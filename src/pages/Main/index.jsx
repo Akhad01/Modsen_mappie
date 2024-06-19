@@ -1,10 +1,12 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
+import Sidebar from '../../components/Sidebar';
 import { Container } from './styled';
 
 const Main = () => {
   return (
     <YMaps>
       <Container>
+        <Sidebar />
         <Map
           height='100vh'
           width='100%'

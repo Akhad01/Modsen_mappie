@@ -1,5 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from './utils/consts';
+import {
+  LOGIN_ROUTE,
+  MAIN_ROUTE,
+  REGISTRATION_ROUTE,
+} from './constants/consts';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Main from './pages/Main';
