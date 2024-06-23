@@ -1,4 +1,5 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
+
 import Sidebar from '../../components/Sidebar';
 import { Container } from './styled';
 
