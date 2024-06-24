@@ -1,5 +1,7 @@
 import FavoriteList from '../FavoriteList';
 
-export const SidebarBookmark = () => {
+const SidebarBookmark = () => {
   return <FavoriteList />;
 };
+
+export default SidebarBookmark;

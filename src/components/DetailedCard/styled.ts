@@ -9,10 +9,10 @@ export const CardContainer = styled(Card)`
   box-shadow: none !important;
 `;
 
-export const CardImage = styled(CardMedia)`
-  height: 200px;
-  border-radius: 8px;
-`;
+// export const CardImage = styled(CardMedia)`
+//   height: 200px;
+//   border-radius: 8px;
+// `;
 
 export const CardDetails = styled(Box)`
   display: flex;

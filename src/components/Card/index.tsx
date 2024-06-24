@@ -1,10 +1,8 @@
 import { IconButton } from '@mui/material';
-
 import { BiSolidRightArrow } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
 import { FaBookmark } from 'react-icons/fa6';
 
-import { setSelectedNav } from '../../store/selectors/sidebar';
+import { setSelectedNav } from '../../store/slices/sidebar-slice';
 import {
   CardActions,
   CardContainer,
@@ -13,9 +11,15 @@ import {
   CardTitle,
   TitleBox,
 } from './styled';
+import { useAppDispatch } from '../../hooks/redux';
 
-const Card = ({ title, description }) => {
-  const dispatch = useDispatch();
+interface Props {
+  title: String;
+  description: String;
+}
+
+const Card = ({ title, description }: Props) => {
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     dispatch(setSelectedNav('detail'));

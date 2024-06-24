@@ -1,10 +1,11 @@
 import SidebarNav from '../SidebarNav';
 import SidebarPanel from '../SidebarPanel';
 import { sidebarContent } from '../../constants/sidebar-content';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks/redux';
+import { getActiveSidebar } from '../../store/selectors/sidebar-selector';
 
 const Sidebar = () => {
-  const sidebarActive = useSelector((state) => state.sidebar.selectedNav);
+  const sidebarActive = useAppSelector(getActiveSidebar);
 
   return (
     <>

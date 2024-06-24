@@ -1,4 +1,4 @@
-import { Avatar, Button, CardActions } from '@mui/material';
+import { Avatar, Button, CardActions, CardMedia } from '@mui/material';
 
 import { FaBookmark, FaLocationDot } from 'react-icons/fa6';
 import { history, nature } from '../../assets/filter-icon';
@@ -7,7 +7,6 @@ import {
   CardDescription,
   CardDetails,
   CardIcons,
-  CardImage,
   CardTitle,
 } from './styled';
 
@@ -19,7 +18,7 @@ const DetailedCard = () => {
 
   return (
     <CardContainer>
-      <CardImage component='img' alt={title} image={image} />
+      <CardMedia component='img' alt={image} image={image} />
       <CardDetails>
         <CardIcons>
           <Avatar sx={{ width: 30, height: 30 }} src={nature} />

@@ -1,7 +1,14 @@
 import { BookmarkButton } from '../components/BookmarkButton';
 import { SearchButton } from '../components/SearchButton';
+import { ReactElement } from 'react';
+import { SidebarItem } from '../types/sidebar';
 
-export const sidebarMenu = [
+interface SidebarMenuItem {
+  type: SidebarItem;
+  component: ReactElement;
+}
+
+export const sidebarMenu: SidebarMenuItem[] = [
   {
     type: 'search',
     component: <SearchButton />,
