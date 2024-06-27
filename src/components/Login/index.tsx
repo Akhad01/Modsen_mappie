@@ -6,12 +6,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   return (
     <LoginForm>
-      <Typography
-        variant='h4'
-        component='div'
-        gutterBottom={true}
-        className='auth'
-      >
+      <Typography variant='h4' component='div' gutterBottom={true}>
         Войдите
       </Typography>
 

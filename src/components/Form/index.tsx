@@ -5,6 +5,11 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form';
+import {
+  loginValidation,
+  passwordValidation,
+} from '../../constants/validation';
+import { FormBlock } from './styled';
 
 interface ISignInForm {
   login: string;
@@ -20,17 +25,16 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<ISignInForm> = (data) => console.log(data);
   return (
-    <form className='auth-form__form' onSubmit={handleSubmit(onSubmit)}>
+    <FormBlock onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
         name='login'
-        rules={{ required: 'Обязательно для заполнения' }}
+        rules={loginValidation}
         render={({ field }) => (
           <TextField
             label='Логин'
             size='small'
             margin='normal'
-            className='auth-form__input'
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
             value={field.value}
@@ -42,13 +46,12 @@ const Form = () => {
       <Controller
         control={control}
         name='password'
-        rules={{ required: 'Обязательно для заполнения' }}
+        rules={passwordValidation}
         render={({ field }) => (
           <TextField
             label='Пароль'
             size='small'
             margin='normal'
-            className='auth-form__input'
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
             value={field.value}
@@ -68,7 +71,7 @@ const Form = () => {
       >
         Войти
       </Button>
-    </form>
+    </FormBlock>
   );
 };
 
