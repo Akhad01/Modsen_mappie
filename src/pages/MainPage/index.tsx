@@ -1,4 +1,5 @@
 import { Circle, Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
+import { Navigate } from 'react-router-dom';
 
 import Sidebar from '../../components/Sidebar';
 import { Container } from './styled';
@@ -7,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 console.log('mark', mark);
 
-const Main = () => {
+const MainPage = () => {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null
   );
@@ -63,4 +64,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;
