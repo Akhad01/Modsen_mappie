@@ -1,26 +1,26 @@
 import { Typography } from '@mui/material';
 import Form from '../Form';
-import { LoginForm, LoginText } from './styled';
+import { SignupForm, SignupText } from './styled';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
   return (
-    <LoginForm>
+    <SignupForm>
       <Typography
         variant='h4'
         component='div'
         gutterBottom={true}
         className='auth'
       >
-        Войдите
+        Зарегистрируйтесь
       </Typography>
 
       <Form />
-      <LoginText>
-        Or <Link to='/registration'>register</Link>
-      </LoginText>
-    </LoginForm>
+      <SignupText>
+        Already have an account? <Link to='/login'>Sign in</Link>
+      </SignupText>
+    </SignupForm>
   );
 };
 
-export default Login;
+export default Signup;
