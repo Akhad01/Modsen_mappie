@@ -5,13 +5,15 @@ import Sidebar from '../../components/Sidebar';
 import { Container } from './styled';
 import { mark } from '../../assets/icons';
 import { useEffect, useState } from 'react';
-
-console.log('mark', mark);
+import { useAuth } from '../../hooks/use-auth';
 
 const MainPage = () => {
+  const { isAuth, email } = useAuth();
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null
   );
+
+  console.log('isAuth', isAuth);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -34,10 +36,8 @@ const MainPage = () => {
     zoom: userLocation ? 12 : 10,
   };
 
-  console.log('userLocation', userLocation);
-
   return (
-    <YMaps>
+    <YMaps query={{ apikey: import.meta.env.VITE_REACT_REACT_APP_YANDEX_API }}>
       <Container>
         <Sidebar />
         <Map height='100vh' width='100%' defaultState={defaultState}>
@@ -62,6 +62,9 @@ const MainPage = () => {
       </Container>
     </YMaps>
   );
+  // : (
+  //   <Navigate to='/login' />
+  // );
 };
 
 export default MainPage;

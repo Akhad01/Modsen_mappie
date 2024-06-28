@@ -1,20 +1,30 @@
 import { Logoimg, Wrapper } from './styled';
 import { logo } from '../../assets/icons';
-import Profile from '../Profile';
+// import Profile from '../Profile';
 import { sidebarMenu } from '../../constants/sidebar-menu';
 import SidebarNavItem from '../SidebarNavItem';
+import { useAuth } from '../../hooks/use-auth';
+import { useAppDispatch } from '../../hooks/redux';
+import { removeUser } from '../../store/slices/user-slices';
+import { Avatar } from '@mui/material';
 
 const SidebarNav = () => {
+  const dispatch = useAppDispatch();
+  const { isAuth } = useAuth();
   return (
     <Wrapper>
       <Logoimg src={logo} />
-
       {sidebarMenu.map((item, i) => (
         <SidebarNavItem type={item.type} key={i}>
           {item.component}
         </SidebarNavItem>
       ))}
-      <Profile />
+      <Avatar
+        style={{ marginTop: 'auto' }}
+        onClick={() => dispatch(removeUser())}
+      >
+        logout
+      </Avatar>
     </Wrapper>
   );
 };
