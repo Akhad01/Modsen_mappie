@@ -1,16 +1,10 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  InputBase,
-  Paper,
-  TextField,
-} from '@mui/material';
+import React from 'react';
+import { Box, IconButton, InputBase, Paper, TextField } from '@mui/material';
 import { IoSearch } from 'react-icons/io5';
 
 import FilterPanel from '../FilterPanel';
 
-import { InputWrapper, StyledHeading } from './styled';
+import { ButtonSearch, InputWrapper, StyledHeading } from './styled';
 
 const SidebarSearch = () => {
   return (
@@ -30,7 +24,7 @@ const SidebarSearch = () => {
           </IconButton>
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder='Место, адрес..'
+            placeholder="Место, адрес.."
             inputProps={{ 'aria-label': 'search google maps' }}
           />
         </Paper>
@@ -39,28 +33,19 @@ const SidebarSearch = () => {
         <StyledHeading>В радиусе</StyledHeading>
         <InputWrapper>
           <TextField
-            id='outlined-number'
+            id="outlined-number"
             style={{ width: '100px' }}
-            label='Number'
-            type='number'
+            label="Number"
+            type="number"
             defaultValue={1000}
           />
           <span style={{ marginLeft: '20px' }}>км</span>
         </InputWrapper>
       </Box>
       <Box>
-        <Button
-          style={{
-            display: 'inline-block',
-            width: '350px',
-            height: '60px',
-            borderRadius: '10px',
-            marginTop: '100px',
-          }}
-          variant='contained'
-        >
+        <ButtonSearch variant="contained">
           <IoSearch style={{ marginTop: '5px' }} size={23} />
-        </Button>
+        </ButtonSearch>
       </Box>
     </>
   );

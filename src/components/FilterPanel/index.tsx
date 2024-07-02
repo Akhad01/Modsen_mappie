@@ -1,3 +1,4 @@
+import React from 'react';
 import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 
 import { StyledList, StyledListContainer } from './styled';

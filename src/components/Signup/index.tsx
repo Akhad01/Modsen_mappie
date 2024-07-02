@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 import Form from '../Form';
 import { SignupForm, SignupText } from './styled';
@@ -19,7 +20,7 @@ const Signup = () => {
             email: user.email,
             id: user.uid,
             token: user.refreshToken,
-          })
+          }),
         );
         navigate('/');
       })
@@ -28,13 +29,13 @@ const Signup = () => {
 
   return (
     <SignupForm>
-      <Typography variant='h4' component='div' gutterBottom={true}>
+      <Typography variant="h4" component="div" gutterBottom={true}>
         Зарегистрируйтесь
       </Typography>
 
       <Form handleClick={handleRegister} />
       <SignupText>
-        Already have an account? <Link to='/login'>Sign in</Link>
+        Already have an account? <Link to="/login">Sign in</Link>
       </SignupText>
     </SignupForm>
   );

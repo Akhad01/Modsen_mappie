@@ -1,3 +1,4 @@
+import React from 'react';
 import SidebarNav from '../SidebarNav';
 import SidebarPanel from '../SidebarPanel';
 import { sidebarContent } from '../../constants/sidebar-content';

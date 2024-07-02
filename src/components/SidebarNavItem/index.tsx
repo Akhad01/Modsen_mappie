@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 import { setSelectedNav } from '../../store/slices/sidebar-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { RootState } from '../../store';
 import { getActiveSidebar } from '../../store/selectors/sidebar-selector';
 import { ReactNode } from 'react';
 import { SidebarItem } from '../../types/sidebar';

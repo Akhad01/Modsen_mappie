@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '@mui/material';
 
 export const StyledHeading = styled.h3`
   font-size: 20px;
@@ -8,4 +9,12 @@ export const StyledHeading = styled.h3`
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const ButtonSearch = styled(Button)`
+  display: inline-block;
+  width: 350px;
+  height: 60px;
+  border-radius: 10px;
+  margin-top: 100px;
 `;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -20,7 +21,7 @@ const Login = () => {
             email: user.email,
             id: user.uid,
             token: user.refreshToken,
-          })
+          }),
         );
         navigate('/');
       })
@@ -29,13 +30,13 @@ const Login = () => {
 
   return (
     <LoginForm>
-      <Typography variant='h4' component='div' gutterBottom={true}>
+      <Typography variant="h4" component="div" gutterBottom={true}>
         Войдите
       </Typography>
 
       <Form handleClick={handleLogin} />
       <LoginText>
-        Or <Link to='/registration'>register</Link>
+        Or <Link to="/registration">register</Link>
       </LoginText>
     </LoginForm>
   );

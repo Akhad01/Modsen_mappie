@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, TextField } from '@mui/material';
 import {
   Controller,
@@ -34,13 +35,13 @@ const Form = ({ handleClick }: FormProps) => {
     <FormBlock onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
-        name='login'
+        name="login"
         rules={loginValidation}
         render={({ field }) => (
           <TextField
-            label='Логин'
-            size='small'
-            margin='normal'
+            label="Логин"
+            size="small"
+            margin="normal"
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
             value={field.value}
@@ -51,14 +52,14 @@ const Form = ({ handleClick }: FormProps) => {
       />
       <Controller
         control={control}
-        name='password'
+        name="password"
         rules={passwordValidation}
         render={({ field }) => (
           <TextField
-            type='password'
-            label='Пароль'
-            size='small'
-            margin='normal'
+            type="password"
+            label="Пароль"
+            size="small"
+            margin="normal"
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
             value={field.value}
@@ -68,8 +69,8 @@ const Form = ({ handleClick }: FormProps) => {
         )}
       />
       <Button
-        type='submit'
-        variant='contained'
+        type="submit"
+        variant="contained"
         fullWidth={true}
         disableElevation={true}
         sx={{

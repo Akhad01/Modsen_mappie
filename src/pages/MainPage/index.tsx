@@ -1,5 +1,6 @@
+import React from 'react';
 import { Circle, Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
 import Sidebar from '../../components/Sidebar';
 import { Container } from './styled';
@@ -8,9 +9,9 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/use-auth';
 
 const MainPage = () => {
-  const { isAuth, email } = useAuth();
+  const { isAuth } = useAuth();
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
-    null
+    null,
   );
 
   console.log('isAuth', isAuth);
@@ -24,7 +25,7 @@ const MainPage = () => {
         },
         (error) => {
           console.error('Error getting location', error);
-        }
+        },
       );
     } else {
       console.error('Geolocation is not supported by this browser.');
@@ -40,7 +41,7 @@ const MainPage = () => {
     <YMaps query={{ apikey: import.meta.env.VITE_REACT_REACT_APP_YANDEX_API }}>
       <Container>
         <Sidebar />
-        <Map height='100vh' width='100%' defaultState={defaultState}>
+        <Map height="100vh" width="100%" defaultState={defaultState}>
           {userLocation && (
             <Placemark
               options={{
