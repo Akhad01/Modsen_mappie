@@ -23,6 +23,7 @@ const Login = () => {
             token: user.refreshToken,
           }),
         );
+        localStorage.setItem('accessToken', user.refreshToken);
         navigate('/');
       })
       .catch(() => alert('Invalid user'));

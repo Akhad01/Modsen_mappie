@@ -19,9 +19,6 @@ const MainPage = () => {
       </Container>
     </YMaps>
   );
-  // : (
-  //   <Navigate to='/login' />
-  // );
 };
 
 export default MainPage;
