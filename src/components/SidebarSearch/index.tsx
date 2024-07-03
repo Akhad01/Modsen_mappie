@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, IconButton, InputBase, Paper, TextField } from '@mui/material';
+import { Box, IconButton, InputBase, Paper } from '@mui/material';
 import { IoSearch } from 'react-icons/io5';
 
 import FilterPanel from '../FilterPanel';
 
 import { ButtonSearch, InputWrapper, StyledHeading } from './styled';
+import RadiusSelector from '../RadiusSelector';
 
 const SidebarSearch = () => {
   return (
@@ -32,13 +33,7 @@ const SidebarSearch = () => {
         <FilterPanel />
         <StyledHeading>В радиусе</StyledHeading>
         <InputWrapper>
-          <TextField
-            id="outlined-number"
-            style={{ width: '100px' }}
-            label="Number"
-            type="number"
-            defaultValue={1000}
-          />
+          <RadiusSelector />
           <span style={{ marginLeft: '20px' }}>км</span>
         </InputWrapper>
       </Box>

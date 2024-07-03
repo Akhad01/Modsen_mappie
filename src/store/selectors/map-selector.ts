@@ -5,3 +5,5 @@ export const getMapSettings = ({ map: { center, zoom } }: RootState) => ({
   center,
   zoom,
 });
+
+export const getLocation = (state: RootState) => state.map.positions;

@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   radius: 1000,
-  center: [65, 45],
+  center: [41, 69],
   zoom: 15,
+  positions: [null, null],
 };
 
 export const mapSlice = createSlice({
@@ -13,9 +14,20 @@ export const mapSlice = createSlice({
     setRadius: (state, action) => {
       state.radius = action.payload;
     },
+    setPosition: (state, action) => {
+      state.positions = action.payload;
+    },
+    setMapSettings: (state, action) => {
+      state.center = action.payload.center;
+      state.zoom = action.payload.zoom;
+    },
+    setCenterPosition: (state, action) => {
+      state.center = action.payload;
+    },
   },
 });
 
-export const { setRadius } = mapSlice.actions;
+export const { setRadius, setPosition, setMapSettings, setCenterPosition } =
+  mapSlice.actions;
 
 export default mapSlice.reducer;
