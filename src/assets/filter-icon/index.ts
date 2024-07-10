@@ -5,14 +5,14 @@ import bicycle from './bicycle.svg';
 import cafe from './cafe.svg';
 import car from './car.svg';
 import culture from './culture.svg';
-import ferrisWheel from './ferris-wheel.svg';
+import attraction from './attraction.svg';
 import food from './food.svg';
 import gasStation from './gas-station.svg';
-import history from './history.svg';
+import monument from './monument.svg';
 import hostels from './hostels.svg';
 import industry2 from './industry_2.svg';
-import industry from './industry.svg';
-import major from './major.svg';
+import industrial from './industrial.svg';
+import adult from './adult.svg';
 import nature from './nature.svg';
 import other from './other.svg';
 import religion from './religion.svg';
@@ -31,14 +31,14 @@ export {
   cafe,
   car,
   culture,
-  ferrisWheel,
+  attraction,
   food,
   gasStation,
-  history,
+  monument,
   hostels,
   industry2,
-  industry,
-  major,
+  industrial,
+  adult,
   nature,
   other,
   religion,

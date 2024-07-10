@@ -1,3 +1,4 @@
+import React from 'react';
 import DetailedCard from '../components/DetailedCard';
 import SidebarBookmark from '../components/SidebarBookmark';
 import SidebarSearch from '../components/SidebarSearch';
