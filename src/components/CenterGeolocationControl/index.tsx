@@ -4,14 +4,16 @@ import { setCenterPosition } from '../../store/slices/map-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getLocation } from '../../store/selectors/map-selector';
 
-const CenterGeolocationControl = () => {
-  const dispatch = useAppDispatch();
-  const location = useAppSelector(getLocation);
+const CenterGeolocationControl = React.memo(
+  function CenterGeolocationControl() {
+    const dispatch = useAppDispatch();
+    const location = useAppSelector(getLocation);
 
-  const hadleClick = () => {
-    dispatch(setCenterPosition(location));
-  };
-  return <GeolocationControl onClick={hadleClick} />;
-};
+    const hadleClick = () => {
+      dispatch(setCenterPosition(location));
+    };
+    return <GeolocationControl onClick={hadleClick} />;
+  },
+);
 
 export default CenterGeolocationControl;

@@ -34,7 +34,7 @@ const SidebarSearch = () => {
         <StyledHeading>В радиусе</StyledHeading>
         <InputWrapper>
           <RadiusSelector />
-          <span style={{ marginLeft: '20px' }}>км</span>
+          <span style={{ marginLeft: '20px' }}>м</span>
         </InputWrapper>
       </Box>
       <Box>

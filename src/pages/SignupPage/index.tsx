@@ -1,6 +1,8 @@
 import React from 'react';
-import { SignupPageStyle } from './styled';
+
 import Signup from '../../components/Signup';
+
+import { SignupPageStyle } from './styled';
 
 const SignupPage = () => {
   return (

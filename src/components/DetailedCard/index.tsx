@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, Button, CardActions, CardMedia } from '@mui/material';
 
 import { FaBookmark, FaLocationDot } from 'react-icons/fa6';
-import { history, nature } from '../../assets/filter-icon';
+import { monument, nature } from '../../assets/filter-icon';
 import {
   ButtonAction,
   CardContainer,
@@ -20,7 +20,7 @@ const DetailedCard = () => {
       <CardDetails>
         <CardIcons>
           <Avatar sx={{ width: 30, height: 30 }} src={nature} />
-          <Avatar sx={{ width: 30, height: 30 }} src={history} />
+          <Avatar sx={{ width: 30, height: 30 }} src={monument} />
         </CardIcons>
         <CardTitle variant="h6">{title}</CardTitle>
         <CardDescription variant="body2">{description}</CardDescription>

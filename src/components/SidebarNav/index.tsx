@@ -58,14 +58,12 @@ const SidebarNav = () => {
         open={open}
       >
         {isAuth ? (
-          <>
-            <MenuItem onClick={handleLogout}>
-              <ListItemIcon>
-                <Logout />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </>
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon>
+              <Logout />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
         ) : (
           <>
             <MenuItem onClick={handleLogout}>

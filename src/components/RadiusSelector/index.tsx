@@ -16,7 +16,7 @@ const RadiusSelector = () => {
   }, [radius]);
 
   const handleRadiusChange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setRadius(event.target.value));
+    dispatch(setRadius(Number(event.target.value)));
   };
 
   return (

@@ -1,10 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { typeFilter } from '../../constants/categories';
 
-const initialState = {
+interface Places {
+  name: string;
+  lat: number;
+  lon: number;
+  type: string;
+}
+
+interface MapState {
+  radius: number;
+  center: [number, number];
+  zoom: number;
+  positions: [number, number] | [null, null];
+  typeFilter: string[];
+  places: Places[];
+}
+
+const initialState: MapState = {
   radius: 1000,
   center: [41, 69],
   zoom: 15,
   positions: [null, null],
+  typeFilter: typeFilter,
+  places: [],
 };
 
 export const mapSlice = createSlice({
@@ -24,10 +43,18 @@ export const mapSlice = createSlice({
     setCenterPosition: (state, action) => {
       state.center = action.payload;
     },
+    setPlaces: (state, action) => {
+      state.places = action.payload;
+    },
   },
 });
 
-export const { setRadius, setPosition, setMapSettings, setCenterPosition } =
-  mapSlice.actions;
+export const {
+  setRadius,
+  setPosition,
+  setMapSettings,
+  setCenterPosition,
+  setPlaces,
+} = mapSlice.actions;
 
 export default mapSlice.reducer;

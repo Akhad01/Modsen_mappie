@@ -4,6 +4,7 @@ import { YMaps } from '@pbe/react-yandex-maps';
 
 import Sidebar from '../../components/Sidebar';
 import Map from '../../components/Map';
+
 import { Container } from './styled';
 
 const MainPage = () => {

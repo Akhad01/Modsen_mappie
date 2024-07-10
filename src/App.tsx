@@ -2,9 +2,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import SignupPage from './pages/SignupPage';
-import { APP_ROUTES } from './constants/app-routes';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
+
+import { APP_ROUTES } from './constants/app-routes';
 
 function App() {
   return (

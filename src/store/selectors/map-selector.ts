@@ -7,3 +7,7 @@ export const getMapSettings = ({ map: { center, zoom } }: RootState) => ({
 });
 
 export const getLocation = (state: RootState) => state.map.positions;
+
+export const getFilterType = (state: RootState) => state.map.typeFilter;
+
+export const getPlaces = (state: RootState) => state.map.places;

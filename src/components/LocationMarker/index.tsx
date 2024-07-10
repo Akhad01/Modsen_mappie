@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Placemark } from '@pbe/react-yandex-maps';
 
 import { mark } from '../../assets/icons';
 
 interface Props {
-  userLocation: Array<number> | null;
+  userLocation: number[] | null;
 }
 
-const LocationMarker = ({ userLocation }: Props) => {
+const LocationMarker = memo(function LocationMarker({ userLocation }: Props) {
   return (
     userLocation && (
       <Placemark
@@ -20,6 +20,6 @@ const LocationMarker = ({ userLocation }: Props) => {
       />
     )
   );
-};
+});
 
 export default LocationMarker;
