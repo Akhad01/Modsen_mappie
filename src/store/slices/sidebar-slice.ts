@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { categories } from '../../constants/categories';
+import { Category } from '../../types/category';
 
-const initialState = {
+interface SidebarState {
+  selectedNav: string | null;
+  categories: Category[];
+}
+
+const initialState: SidebarState = {
   selectedNav: null,
   categories: categories,
 };

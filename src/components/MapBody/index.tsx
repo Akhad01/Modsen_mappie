@@ -7,20 +7,21 @@ import LocationMarker from '../LocationMarker';
 import PersonRadius from '../PersonRadius';
 import Places from '../Places';
 
-import {
-  getFilterType,
-  getMapRadius,
-} from '../../store/selectors/map-selector';
+import { getMapRadius } from '../../store/selectors/map-selector';
 import { setPlaces, setPosition } from '../../store/slices/map-slice';
 import { fetchPlaces } from '../../api/api';
+import { getCategories } from '../../store/selectors/sidebar-selector';
+import { useFilteredPlaces } from '../../hooks/use-filtered-places';
 
 const MapBody = () => {
   const dispatch = useAppDispatch();
   const radius = useAppSelector(getMapRadius);
-  const selectedTypes = useAppSelector(getFilterType);
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null,
   );
+  const categories = useAppSelector(getCategories);
+
+  const filteredPlaces = useFilteredPlaces();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -30,11 +31,13 @@ const MapBody = () => {
           setUserLocation([latitude, longitude]);
           dispatch(setPosition([latitude, longitude]));
 
+          const filterTypeItems = categories.map((item) => item.type);
+
           const fetchedPlaces = await fetchPlaces(
             latitude,
             longitude,
             radius / 111000,
-            selectedTypes,
+            filterTypeItems,
           );
           dispatch(setPlaces(fetchedPlaces));
         },
@@ -45,12 +48,14 @@ const MapBody = () => {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
     const timer = setTimeout(() => {}, 750);
     return () => clearTimeout(timer);
   }, [radius]);
+
+  console.log('filteredPlaces', filteredPlaces);
 
   return (
     <>
@@ -61,7 +66,7 @@ const MapBody = () => {
         }}
       />
       <CenterGeolocationControl />
-      <Places />
+      <Places filteredPlaces={filteredPlaces} />
       <LocationMarker userLocation={userLocation} />
       <PersonRadius userLocation={userLocation} />
     </>

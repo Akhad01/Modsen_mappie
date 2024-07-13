@@ -12,13 +12,7 @@ import {
   bank,
   hostels,
 } from '../assets/filter-icon';
-
-interface Category {
-  type: string;
-  icon: string;
-  text: string;
-  isActive: boolean;
-}
+import { Category } from '../types/category';
 
 interface CategoriesIcon {
   [key: string]: string;
@@ -63,5 +57,3 @@ export const categoriesIcon: CategoriesIcon = {
   hostel: hostels,
   other: other,
 };
-
-export const typeFilter = categories.map((item) => item.type);

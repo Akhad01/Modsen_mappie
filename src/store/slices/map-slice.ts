@@ -1,28 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { typeFilter } from '../../constants/categories';
-
-interface Places {
-  name: string;
-  lat: number;
-  lon: number;
-  type: string;
-}
+import { Place } from '../../types/place';
 
 interface MapState {
   radius: number;
   center: [number, number];
   zoom: number;
   positions: [number, number] | [null, null];
-  typeFilter: string[];
-  places: Places[];
+  places: Place[];
 }
 
 const initialState: MapState = {
-  radius: 1000,
+  radius: 10000,
   center: [41, 69],
   zoom: 10,
   positions: [null, null],
-  typeFilter: typeFilter,
   places: [],
 };
 
