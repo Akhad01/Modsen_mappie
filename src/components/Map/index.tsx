@@ -1,5 +1,5 @@
-import { Map as MapY } from '@pbe/react-yandex-maps';
 import React from 'react';
+import { Map as MapY } from '@pbe/react-yandex-maps';
 
 import MapBody from '../MapBody';
 

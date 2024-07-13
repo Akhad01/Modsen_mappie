@@ -1,4 +1,4 @@
-import { List } from '@mui/material';
+import { List, ListItem } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledListContainer = styled(List)`
@@ -31,4 +31,12 @@ export const StyledListContainer = styled(List)`
 
 export const StyledList = styled(List)`
   padding: 10px;
+`;
+
+export const ListItemWrapper = styled(ListItem)`
+  cursor: pointer;
+
+  &.active {
+    opacity: 0.4;
+  }
 `;

@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { categories } from '../../constants/categories';
 
 const initialState = {
   selectedNav: null,
+  categories: categories,
 };
 
 export const sidebarSlice = createSlice({
@@ -11,9 +13,17 @@ export const sidebarSlice = createSlice({
     setSelectedNav: (state, action) => {
       state.selectedNav = action.payload;
     },
+    toggleItemCategories: (state, action) => {
+      state.categories.map((item) => {
+        if (item.type === action.payload) {
+          return (item.isActive = !item.isActive);
+        }
+        return item;
+      });
+    },
   },
 });
 
-export const { setSelectedNav } = sidebarSlice.actions;
+export const { setSelectedNav, toggleItemCategories } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

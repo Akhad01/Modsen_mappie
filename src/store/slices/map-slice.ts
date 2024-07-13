@@ -20,7 +20,7 @@ interface MapState {
 const initialState: MapState = {
   radius: 1000,
   center: [41, 69],
-  zoom: 15,
+  zoom: 10,
   positions: [null, null],
   typeFilter: typeFilter,
   places: [],
