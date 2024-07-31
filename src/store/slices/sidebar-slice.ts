@@ -5,11 +5,13 @@ import { Category } from '../../types/category';
 interface SidebarState {
   selectedNav: string | null;
   categories: Category[];
+  currentPlaceId: string | null;
 }
 
 const initialState: SidebarState = {
   selectedNav: null,
   categories: categories,
+  currentPlaceId: null,
 };
 
 export const sidebarSlice = createSlice({
@@ -27,9 +29,17 @@ export const sidebarSlice = createSlice({
         return item;
       });
     },
+    setPlaceIdAndShowSidebarPanel: (state, action) => {
+      state.selectedNav = 'detail';
+      state.currentPlaceId = action.payload;
+    },
   },
 });
 
-export const { setSelectedNav, toggleItemCategories } = sidebarSlice.actions;
+export const {
+  setSelectedNav,
+  toggleItemCategories,
+  setPlaceIdAndShowSidebarPanel,
+} = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

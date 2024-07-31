@@ -4,26 +4,20 @@ import styled from 'styled-components';
 export const CardContainer = styled(Card)`
   padding: 20px 20px 35px 20px;
   border-radius: 12px;
-  width: 440px;
+  max-width: 440px;
   border: 3px solid #c4c4c4;
   box-shadow: none !important;
 `;
-
-// export const CardImage = styled(CardMedia)`
-//   height: 200px;
-//   border-radius: 8px;
-// `;
 
 export const CardDetails = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 16px;
 `;
 
 export const CardTitle = styled(Typography)`
   font-weight: bold;
-  margin-top: 16px;
+  margin-top: 10px !important;
 `;
 
 export const CardDescription = styled(Typography)`

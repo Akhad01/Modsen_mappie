@@ -3,18 +3,18 @@ import { getPlaces } from '../store/selectors/map-selector';
 import { getCategories } from '../store/selectors/sidebar-selector';
 import { useAppSelector } from './redux';
 import { Category } from '../types/category';
-import { Place } from '../types/place';
+import { PlaceItem } from '../types/place-item';
 
-export const useFilteredPlaces = (): Place[] => {
-  const places: Place[] = useAppSelector(getPlaces);
+export const useFilteredPlaces = (): PlaceItem[] => {
+  const places: PlaceItem[] = useAppSelector(getPlaces);
   const categories: Category[] = useAppSelector(getCategories);
 
-  const [filteredPlaces, setFilteredPlaces] = useState<Place[]>([]);
+  const [filteredPlaces, setFilteredPlaces] = useState<PlaceItem[]>([]);
 
   useEffect(() => {
     const filterPlacesBasedOnCategories = (
       categories: Category[],
-      places: Place[],
+      places: PlaceItem[],
     ) => {
       // Создаем набор типов категорий, у которых isActive равен false
       const inactiveTypes = new Set(
@@ -22,8 +22,6 @@ export const useFilteredPlaces = (): Place[] => {
           .filter((category) => !category.isActive)
           .map((category) => category.type),
       );
-
-      console.log('inactiveTypes', inactiveTypes);
 
       // Фильтруем места, исключая те, которые соответствуют неактивным категориям
       return places.filter((place) => !inactiveTypes.has(place.type));

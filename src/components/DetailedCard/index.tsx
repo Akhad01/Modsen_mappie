@@ -1,42 +1,73 @@
-import React from 'react';
-import { Avatar, Button, CardActions, CardMedia } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Avatar, Button, CardActions, Typography } from '@mui/material';
 
 import { FaBookmark, FaLocationDot } from 'react-icons/fa6';
-import { monument, nature } from '../../assets/filter-icon';
 import {
   ButtonAction,
   CardContainer,
-  CardDescription,
   CardDetails,
   CardIcons,
   CardTitle,
 } from './styled';
-import { description, image, title } from './config';
+import { useAppSelector } from '../../hooks/redux';
+import { getCurrentPlaceId } from '../../store/selectors/sidebar-selector';
+import { getPlaces } from '../../store/selectors/map-selector';
+import { PlaceItem } from '../../types/place-item';
+import { categoriesIcon } from '../../constants/categories';
 
 const DetailedCard = () => {
+  const placeId = useAppSelector(getCurrentPlaceId);
+  const places = useAppSelector(getPlaces);
+
+  const [currentPlace, setCurrentPlace] = useState<PlaceItem | null>(null);
+
+  useEffect(() => {
+    function fulterPlaces(): PlaceItem | null {
+      if (!places || !placeId) {
+        return null;
+      }
+
+      return places.find((place: PlaceItem) => place.id === placeId) || null;
+    }
+
+    setCurrentPlace(fulterPlaces());
+  }, [placeId, places]);
+
   return (
-    <CardContainer>
-      <CardMedia component="img" alt={image} image={image} />
-      <CardDetails>
-        <CardIcons>
-          <Avatar sx={{ width: 30, height: 30 }} src={nature} />
-          <Avatar sx={{ width: 30, height: 30 }} src={monument} />
-        </CardIcons>
-        <CardTitle variant="h6">{title}</CardTitle>
-        <CardDescription variant="body2">{description}</CardDescription>
-        <CardActions>
-          <ButtonAction
-            variant="outlined"
-            startIcon={<FaBookmark color="#808080" />}
+    currentPlace && (
+      <CardContainer>
+        <CardDetails>
+          <CardIcons>
+            <Avatar
+              sx={{ width: 30, height: 30 }}
+              src={categoriesIcon[currentPlace.type]}
+            />
+          </CardIcons>
+          <CardTitle variant="h5">{currentPlace.name}</CardTitle>
+          <Typography
+            style={{ marginTop: '10px' }}
+            color="text.secondary"
+            variant="body1"
           >
-            Сохранено
-          </ButtonAction>
-          <Button variant="contained" startIcon={<FaLocationDot />}>
-            Маршрут
-          </Button>
-        </CardActions>
-      </CardDetails>
-    </CardContainer>
+            {currentPlace.description}
+          </Typography>
+          <Typography style={{ marginTop: '10px' }} variant="body2">
+            {currentPlace.hours || 'Нет информации'}
+          </Typography>
+          <CardActions style={{ marginTop: '10px', justifyContent: 'center' }}>
+            <ButtonAction
+              variant="outlined"
+              startIcon={<FaBookmark color="#808080" />}
+            >
+              Сохранено
+            </ButtonAction>
+            <Button variant="contained" startIcon={<FaLocationDot />}>
+              Маршрут
+            </Button>
+          </CardActions>
+        </CardDetails>
+      </CardContainer>
+    )
   );
 };
 

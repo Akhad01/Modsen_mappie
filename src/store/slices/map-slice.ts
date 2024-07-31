@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Place } from '../../types/place';
+import { PlaceItem } from '../../types/place-item';
 
 interface MapState {
   radius: number;
   center: [number, number];
   zoom: number;
   positions: [number, number] | [null, null];
-  places: Place[];
+  places: PlaceItem[];
 }
 
 const initialState: MapState = {
-  radius: 10000,
+  radius: 5000,
   center: [41, 69],
   zoom: 10,
   positions: [null, null],

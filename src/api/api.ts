@@ -29,7 +29,10 @@ type Element = {
 };
 
 type ProcessedPlace = {
+  id: string | undefined;
   name: string;
+  description: string | undefined;
+  hours: string | undefined;
   lat: number | undefined;
   lon: number | undefined;
   type: string;
@@ -64,8 +67,6 @@ export const fetchPlaces = async (
     }
   }
 
-  console.log('places', places);
-
   return places;
 };
 
@@ -79,7 +80,10 @@ const processData = (data: Element[], type: string): ProcessedPlace[] => {
       element.properties.boundedBy
     ) {
       const place: ProcessedPlace = {
+        id: element.properties.CompanyMetaData?.id,
         name: element.properties.name,
+        description: element.properties.description,
+        hours: element.properties.CompanyMetaData?.Hours?.text,
         lat: element.properties.boundedBy[0][1],
         lon: element.properties.boundedBy[0][0],
         type: type,
