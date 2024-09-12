@@ -11,12 +11,12 @@ const Sidebar = () => {
   const sidebarActive = useAppSelector(getActiveSidebar);
 
   return (
-    <>
+    <div style={{ display: 'flex', position: 'relative' }}>
       <SidebarNav />
       {sidebarActive && (
         <SidebarPanel>{sidebarContent[sidebarActive]}</SidebarPanel>
       )}
-    </>
+    </div>
   );
 };
 

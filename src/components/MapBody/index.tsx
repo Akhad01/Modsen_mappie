@@ -62,7 +62,7 @@ const MapBody = () => {
       <ZoomControl
         options={{
           size: 'small',
-          position: { top: '10px', right: '10px' },
+          position: { top: '45px', left: '10px' },
         }}
       />
       <CenterGeolocationControl />

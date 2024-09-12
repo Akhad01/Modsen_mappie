@@ -8,7 +8,6 @@ import {
   CardActions,
   CardContainer,
   CardDescription,
-  CardImage,
   CardTitle,
   TitleBox,
 } from './styled';
@@ -28,7 +27,6 @@ const Card = ({ title, description }: Props) => {
 
   return (
     <CardContainer>
-      <CardImage />
       <TitleBox>
         <CardTitle variant="h6">{title}</CardTitle>
       </TitleBox>

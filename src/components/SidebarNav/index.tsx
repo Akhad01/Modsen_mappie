@@ -4,7 +4,6 @@ import { Avatar, Menu, MenuItem } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { MdPersonAddAlt1 as PersonIcon } from 'react-icons/md';
 import { logo } from '../../assets/icons';
-// import Profile from '../Profile';
 import { sidebarMenu } from '../../constants/sidebar-menu';
 import SidebarNavItem from '../SidebarNavItem';
 import { useAppDispatch } from '../../hooks/redux';

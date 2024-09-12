@@ -5,7 +5,7 @@ export const items = [
   },
   {
     title: 'Городской парк',
-    description: 'Lorem ipsum jere. Intrabel peraktiv pävufäsk läslov pide.',
+    description: 'Lorem ipsum jere. Intrabel.',
   },
   {
     title: 'Фантастический музей им. П.М. Машерова',

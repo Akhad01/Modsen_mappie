@@ -20,7 +20,7 @@ const Map = () => {
 
   return (
     <MapY
-      height="100vh"
+      height="100%"
       width="100%"
       state={mapSettings}
       onBoundsChange={handleBoundsChange}

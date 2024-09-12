@@ -13,7 +13,7 @@ export const InputWrapper = styled.div`
 
 export const ButtonSearch = styled(Button)`
   display: inline-block;
-  width: 350px;
+  width: 100%;
   height: 60px;
   border-radius: 10px;
   margin-top: 100px;
