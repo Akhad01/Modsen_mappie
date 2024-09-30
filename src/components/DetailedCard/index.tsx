@@ -14,12 +14,56 @@ import { getCurrentPlaceId } from '../../store/selectors/sidebar-selector';
 import { getPlaces } from '../../store/selectors/map-selector';
 import { PlaceItem } from '../../types/place-item';
 import { categoriesIcon } from '../../constants/categories';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase';
+
+// test 
+import { getAuth } from "firebase/auth"
+
+
+// ------>
 
 const DetailedCard = () => {
   const placeId = useAppSelector(getCurrentPlaceId);
   const places = useAppSelector(getPlaces);
 
   const [currentPlace, setCurrentPlace] = useState<PlaceItem | null>(null);
+
+  const handleAddToFavorites = async () => {
+    try {
+      const auth = getAuth()
+      const user = auth.currentUser
+
+      if (!user) {
+        throw new Error('Пользователь не авторизован')
+      }
+
+      const userId = user.uid
+
+      const q = query(
+        collection(db, "favorites"),
+        where("userId", "==", userId),
+        where("id", "==", currentPlace?.id)
+      )
+
+      const querySnapshot = await getDocs(q)
+
+      if (!querySnapshot.empty) {
+        console.log("Место уже избранном")
+        return
+      }
+
+      const docRef = await addDoc(collection(db, "favorites"), {
+        ...currentPlace,
+        addedAt: new Date(),
+        userId: userId
+      })
+
+      console.log("Документ добавлен с ID: ", docRef.id);
+    } catch (error) {
+      console.error("Ошибка при добавлении в избранное: ", error);
+    }
+  }
 
   useEffect(() => {
     function fulterPlaces(): PlaceItem | null {
@@ -56,6 +100,7 @@ const DetailedCard = () => {
           </Typography>
           <CardActions style={{ marginTop: '10px', justifyContent: 'center' }}>
             <ButtonAction
+              onClick={handleAddToFavorites}
               variant="outlined"
               startIcon={<FaBookmark color="#808080" />}
             >

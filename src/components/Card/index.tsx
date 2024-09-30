@@ -16,9 +16,10 @@ import { useAppDispatch } from '../../hooks/redux';
 interface Props {
   title: string;
   description: string;
+  id: string;
 }
 
-const Card = ({ title, description }: Props) => {
+const Card = ({ id, title, description }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {

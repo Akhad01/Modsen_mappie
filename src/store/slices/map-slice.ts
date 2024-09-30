@@ -10,7 +10,7 @@ interface MapState {
 }
 
 const initialState: MapState = {
-  radius: 5000,
+  radius: 10000,
   center: [41, 69],
   zoom: 10,
   positions: [null, null],
