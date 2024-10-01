@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, Button, CardActions, Typography } from '@mui/material';
-
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { FaBookmark, FaLocationDot } from 'react-icons/fa6';
+import { getAuth } from "firebase/auth"
+
 import {
   ButtonAction,
   CardContainer,
@@ -10,20 +12,14 @@ import {
   CardTitle,
 } from './styled';
 import { useAppSelector } from '../../hooks/redux';
-import { getCurrentPlaceId } from '../../store/selectors/sidebar-selector';
+import { getCurrentPlaceId, getFavoriteItem } from '../../store/selectors/sidebar-selector';
 import { getPlaces } from '../../store/selectors/map-selector';
 import { PlaceItem } from '../../types/place-item';
 import { categoriesIcon } from '../../constants/categories';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-// test 
-import { getAuth } from "firebase/auth"
-
-
-// ------>
-
 const DetailedCard = () => {
+  const favorites = useAppSelector(getFavoriteItem)
   const placeId = useAppSelector(getCurrentPlaceId);
   const places = useAppSelector(getPlaces);
 
@@ -71,7 +67,9 @@ const DetailedCard = () => {
         return null;
       }
 
-      return places.find((place: PlaceItem) => place.id === placeId) || null;
+      const allPlaces = !favorites ? [...places] : [...favorites, ...places]
+
+      return allPlaces.find((place: PlaceItem) => place.id === placeId) || null;
     }
 
     setCurrentPlace(fulterPlaces());

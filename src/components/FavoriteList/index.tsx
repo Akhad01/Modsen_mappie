@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Card from '../Card';
-import { items } from './config';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { PlaceItem } from '../../types/place-item';
-import { ListWrapper } from './styled';
 
-interface FavoriteItem extends PlaceItem {
-  userId: string;
-  addedAt: Date;
-}
+import { db } from '../../firebase';
+import { ListWrapper } from './styled';
+import { FavoriteItem } from '../../types/favorite-item';
+import { setFavoriteItem } from '../../store/slices/sidebar-slice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getFavoriteItem } from '../../store/selectors/sidebar-selector';
 
 const FavoriteList = () => {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([])
+  const favorites = useAppSelector(getFavoriteItem)
   const [loading, setLoading] = useState(true)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     async function getFavorites() {
@@ -41,7 +40,7 @@ const FavoriteList = () => {
           })
         }) 
 
-        setFavorites(favoritesList)
+        dispatch(setFavoriteItem(favoritesList))
       } catch (error) {
         console.error("Ошибка при получении избранных элементов: ", error);
       } finally {

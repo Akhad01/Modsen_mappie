@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { BiSolidRightArrow } from 'react-icons/bi';
 import { FaBookmark } from 'react-icons/fa6';
 
-import { setSelectedNav } from '../../store/slices/sidebar-slice';
+import { setPlaceIdAndShowSidebarPanel } from '../../store/slices/sidebar-slice';
 import {
   CardActions,
   CardContainer,
@@ -23,7 +23,7 @@ const Card = ({ id, title, description }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(setSelectedNav('detail'));
+    dispatch(setPlaceIdAndShowSidebarPanel(id));
   };
 
   return (
