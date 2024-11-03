@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import sidebarReducer from './slices/sidebar-slice';
 import userReducer from './slices/user-slices';
-import mapReducer from './slices/map-slice';
+import mapReducer from './slices/map/map-slice';
 
 export const store = configureStore({
   reducer: {
@@ -9,6 +9,9 @@ export const store = configureStore({
     user: userReducer,
     map: mapReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  })
 });
 
 export type AppDispatch = typeof store.dispatch;

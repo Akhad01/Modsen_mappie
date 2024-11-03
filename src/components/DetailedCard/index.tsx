@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, CardActions, Typography } from '@mui/material';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import { FaBookmark, FaLocationDot } from 'react-icons/fa6';
+import { Avatar, CardActions, Typography } from '@mui/material';
+import { FaBookmark } from 'react-icons/fa6';
 import { getAuth } from "firebase/auth"
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 import {
   ButtonAction,
@@ -17,6 +17,7 @@ import { getPlaces } from '../../store/selectors/map-selector';
 import { PlaceItem } from '../../types/place-item';
 import { categoriesIcon } from '../../constants/categories';
 import { db } from '../../firebase';
+import RouteButton from '../RouteButton';
 
 const DetailedCard = () => {
   const favorites = useAppSelector(getFavoriteItem)
@@ -24,6 +25,8 @@ const DetailedCard = () => {
   const places = useAppSelector(getPlaces);
 
   const [currentPlace, setCurrentPlace] = useState<PlaceItem | null>(null);
+
+  
 
   const handleAddToFavorites = async () => {
     try {
@@ -75,6 +78,7 @@ const DetailedCard = () => {
     setCurrentPlace(fulterPlaces());
   }, [placeId, places]);
 
+
   return (
     currentPlace && (
       <CardContainer>
@@ -86,13 +90,6 @@ const DetailedCard = () => {
             />
           </CardIcons>
           <CardTitle variant="h5">{currentPlace.name}</CardTitle>
-          <Typography
-            style={{ marginTop: '10px' }}
-            color="text.secondary"
-            variant="body1"
-          >
-            {currentPlace.description}
-          </Typography>
           <Typography style={{ marginTop: '10px' }} variant="body2">
             {currentPlace.hours || 'Нет информации'}
           </Typography>
@@ -102,11 +99,9 @@ const DetailedCard = () => {
               variant="outlined"
               startIcon={<FaBookmark color="#808080" />}
             >
-              Сохранено
+              Сохранить
             </ButtonAction>
-            <Button variant="contained" startIcon={<FaLocationDot />}>
-              Маршрут
-            </Button>
+            <RouteButton/>
           </CardActions>
         </CardDetails>
       </CardContainer>

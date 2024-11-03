@@ -5,19 +5,21 @@ import { useAppDispatch } from '../../hooks/redux';
 import { setPlaceIdAndShowSidebarPanel } from '../../store/slices/sidebar-slice';
 
 interface Props {
-  id: string;
+  id: number;
   key: number;
   categoriesIcon: string;
-  geometry: number[];
+  geometry: [number, number];
 }
 
 const Place = memo(
   ({ id, key, categoriesIcon, geometry }: Props) => {
     const dispatch = useAppDispatch();
+
     const handleClick = () => {
       dispatch(setPlaceIdAndShowSidebarPanel(id));
       console.log('click', id);
     };
+
     return (
       <Placemark
         key={key}

@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     'react/jsx-no-target-blank': 'off',
     'prefer-const': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

@@ -6,7 +6,7 @@ import { FavoriteItem } from '../../types/favorite-item';
 interface SidebarState {
   selectedNav: string | null;
   categories: Category[];
-  currentPlaceId: string | null;
+  currentPlaceId: number | null;
   favoritePlaces: FavoriteItem[]
 }
 

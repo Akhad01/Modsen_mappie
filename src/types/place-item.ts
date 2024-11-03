@@ -1,9 +1,10 @@
+export type PlaceKind = 'nature' | 'culture' | 'historic' | 'religion' | 'architecture'
+    | 'industrial' | 'avocation' | 'sport' | 'adult' | 'food' | 'cafe' | 'bank' | 'sleep' | 'unknown';
+
 export interface PlaceItem {
-  id: string;
+  id: number;
+  position: [number, number];
   name: string;
-  description: string;
-  hours: string;
-  lat: number;
-  lon: number;
-  type: string;
+  hours?: string;
+  type: PlaceKind;
 }

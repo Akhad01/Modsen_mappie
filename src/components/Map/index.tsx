@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Map as MapY } from '@pbe/react-yandex-maps';
 
 import MapBody from '../MapBody';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getMapSettings } from '../../store/selectors/map-selector';
-import { setMapSettings } from '../../store/slices/map-slice';
+import { setMapSettings } from '../../store/slices/map/map-slice';
+import { MapContext } from '../../context/MapContext';
 
 const Map = () => {
   const mapSettings = useAppSelector(getMapSettings);
   const dispatch = useAppDispatch();
+  const { mapRef } = useContext(MapContext)
 
   const handleBoundsChange = (event: ymaps.IEvent) => {
     const map = event.get('target');
@@ -24,6 +26,7 @@ const Map = () => {
       width="100%"
       state={mapSettings}
       onBoundsChange={handleBoundsChange}
+      instanceRef={mapRef!}
       options={{
         suppressMapOpenBlock: true,
         copyrightProvidersVisible: false,

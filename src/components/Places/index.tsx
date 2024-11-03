@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { Placemark } from '@pbe/react-yandex-maps';
 
 import { categoriesIcon } from '../../constants/categories';
 import Place from '../Place';
@@ -12,21 +11,11 @@ interface Props {
 const Places = memo(function Places({ filteredPlaces }: Props) {
   return filteredPlaces.map((place, index) => {
     return (
-      // <Placemark
-      //   key={index}
-      //   onClick={handleClick(id)}
-      //   options={{
-      //     iconLayout: 'default#image',
-      //     iconImageSize: [32, 32],
-      //     iconImageHref: categoriesIcon[place.type],
-      //   }}
-      //   geometry={[place.lat, place.lon]}
-      // />
       <Place
         id={place.id}
         key={index}
         categoriesIcon={categoriesIcon[place.type]}
-        geometry={[place.lat, place.lon]}
+        geometry={[place.position[0], place.position[1]]}
       />
     );
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GeolocationControl } from '@pbe/react-yandex-maps';
-import { setCenterPosition } from '../../store/slices/map-slice';
+import { setCenterPosition } from '../../store/slices/map/map-slice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getLocation } from '../../store/selectors/map-selector';
 

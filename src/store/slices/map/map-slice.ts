@@ -1,20 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PlaceItem } from '../../types/place-item';
+import { getPlacesThunk } from './getPlacesThunk';
+import { PlaceItem } from '../../../types/place-item';
 
-interface MapState {
+export interface MapState {
   radius: number;
   center: [number, number];
   zoom: number;
   positions: [number, number] | [null, null];
   places: PlaceItem[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: MapState = {
-  radius: 10000,
+  radius: 1000,
   center: [41, 69],
   zoom: 10,
   positions: [null, null],
+
   places: [],
+  loading: false,
+  error: null
 };
 
 export const mapSlice = createSlice({
@@ -34,9 +40,24 @@ export const mapSlice = createSlice({
     setCenterPosition: (state, action) => {
       state.center = action.payload;
     },
-    setPlaces: (state, action) => {
-      state.places = action.payload;
-    },
+    // setPlaces: (state, action) => {
+    //   state.places = action.payload;
+    // },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(getPlacesThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null
+      })
+      .addCase(getPlacesThunk.fulfilled, (state, action) => {
+        state.loading = false
+        state.places = action.payload;
+      })
+      .addCase(getPlacesThunk.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message ?? "Поизошла ошибка"
+      })
   },
 });
 
@@ -45,7 +66,7 @@ export const {
   setPosition,
   setMapSettings,
   setCenterPosition,
-  setPlaces,
+  // setPlaces,
 } = mapSlice.actions;
 
 export default mapSlice.reducer;

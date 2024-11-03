@@ -11,6 +11,7 @@ export const useFilteredPlaces = (): PlaceItem[] => {
 
   const [filteredPlaces, setFilteredPlaces] = useState<PlaceItem[]>([]);
 
+
   useEffect(() => {
     const filterPlacesBasedOnCategories = (
       categories: Category[],

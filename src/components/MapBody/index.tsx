@@ -8,10 +8,13 @@ import PersonRadius from '../PersonRadius';
 import Places from '../Places';
 
 import { getMapRadius } from '../../store/selectors/map-selector';
-import { setPlaces, setPosition } from '../../store/slices/map-slice';
-import { fetchPlaces } from '../../api/api';
+import { setPosition } from '../../store/slices/map/map-slice';
+
 import { getCategories } from '../../store/selectors/sidebar-selector';
 import { useFilteredPlaces } from '../../hooks/use-filtered-places';
+
+import { fetchPlacesTest } from '../../api/api-test';
+import { getPlacesThunk } from '../../store/slices/map/getPlacesThunk';
 
 const MapBody = () => {
   const dispatch = useAppDispatch();
@@ -26,20 +29,18 @@ const MapBody = () => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        async (position) => {
+        (position) => {
           const { latitude, longitude } = position.coords;
+          
           setUserLocation([latitude, longitude]);
           dispatch(setPosition([latitude, longitude]));
 
-          const filterTypeItems = categories.map((item) => item.type);
+          const timer = setTimeout(() => {
+            fetchPlacesTest()
+            dispatch(getPlacesThunk())
+          }, 1000)
 
-          const fetchedPlaces = await fetchPlaces(
-            latitude,
-            longitude,
-            radius / 111000,
-            filterTypeItems,
-          );
-          dispatch(setPlaces(fetchedPlaces));
+          return () => clearTimeout(timer)
         },
         (error) => {
           console.error('Error getting location', error);
@@ -48,14 +49,7 @@ const MapBody = () => {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, [categories]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {}, 750);
-    return () => clearTimeout(timer);
-  }, [radius]);
-
-  console.log('filteredPlaces', filteredPlaces);
+  }, [categories, radius]);
 
   return (
     <>
