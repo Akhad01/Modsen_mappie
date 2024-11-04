@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Avatar, CardActions, Typography } from '@mui/material';
 import { FaBookmark } from 'react-icons/fa6';
 import { getAuth } from "firebase/auth"
@@ -11,21 +11,25 @@ import {
   CardIcons,
   CardTitle,
 } from './styled';
-import { useAppSelector } from '../../hooks/redux';
-import { getCurrentPlaceId, getFavoriteItem } from '../../store/selectors/sidebar-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getCurrentPlace, getCurrentPlaceId, getFavoriteItem } from '../../store/selectors/sidebar-selector';
 import { getPlaces } from '../../store/selectors/map-selector';
 import { PlaceItem } from '../../types/place-item';
 import { categoriesIcon } from '../../constants/categories';
 import { db } from '../../firebase';
 import RouteButton from '../RouteButton';
+import { setCurrentPlace } from '../../store/slices/sidebar-slice';
 
 const DetailedCard = () => {
   const favorites = useAppSelector(getFavoriteItem)
   const placeId = useAppSelector(getCurrentPlaceId);
   const places = useAppSelector(getPlaces);
 
-  const [currentPlace, setCurrentPlace] = useState<PlaceItem | null>(null);
+  const dispatch = useAppDispatch()
 
+  const currentPlace = useAppSelector(getCurrentPlace)
+
+  console.log("currentPlace", currentPlace);
   
 
   const handleAddToFavorites = async () => {
@@ -75,7 +79,7 @@ const DetailedCard = () => {
       return allPlaces.find((place: PlaceItem) => place.id === placeId) || null;
     }
 
-    setCurrentPlace(fulterPlaces());
+    dispatch(setCurrentPlace(fulterPlaces()));
   }, [placeId, places]);
 
 

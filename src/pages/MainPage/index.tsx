@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { YMaps } from '@pbe/react-yandex-maps';
 // import { Navigate } from 'react-router-dom';
 

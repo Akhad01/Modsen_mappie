@@ -6,3 +6,4 @@ export const getCurrentPlaceId = (state: RootState) =>
   state.sidebar.currentPlaceId;
 
 export const getFavoriteItem = (state: RootState) => state.sidebar.favoritePlaces
+export const getCurrentPlace = (state: RootState) => state.sidebar.currentPlace
