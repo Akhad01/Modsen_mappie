@@ -29,9 +29,6 @@ const DetailedCard = () => {
 
   const currentPlace = useAppSelector(getCurrentPlace)
 
-  console.log("currentPlace", currentPlace);
-  
-
   const handleAddToFavorites = async () => {
     try {
       const auth = getAuth()
@@ -48,7 +45,7 @@ const DetailedCard = () => {
         where("userId", "==", userId),
         where("id", "==", currentPlace?.id)
       )
-
+      
       const querySnapshot = await getDocs(q)
 
       if (!querySnapshot.empty) {
@@ -58,6 +55,7 @@ const DetailedCard = () => {
 
       const docRef = await addDoc(collection(db, "favorites"), {
         ...currentPlace,
+        hours: currentPlace?.hours || "Нет информации",
         addedAt: new Date(),
         userId: userId
       })

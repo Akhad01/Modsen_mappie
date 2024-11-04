@@ -38,11 +38,7 @@ export const getPlacesThunk = createAsyncThunk<PlaceItem[], void, { state: RootS
 
             const result = response.data.elements
 
-            console.log("res", response);
-            
-
             const locationService = new LocationTransformService()
-
             
             const transformedLocations = locationService.convertLocationsWithoutDescription(result, categories);
 
