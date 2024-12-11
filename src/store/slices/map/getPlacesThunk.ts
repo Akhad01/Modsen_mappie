@@ -6,7 +6,7 @@ import { PlacesService } from "../../../api/PlacesService";
 export const getPlacesThunk = createAsyncThunk<PlaceItem[], void, { state: RootState }>(
     "map/getPlaces",
     async (_, { getState }) => {
-        const state = getState()
+        const state = getState() as RootState
         const { radius, positions } = state.map
         const { categories } = state.sidebar
         const filteredCategories: PlaceKind[] = categories
