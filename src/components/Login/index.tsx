@@ -7,6 +7,7 @@ import Form from '../Form';
 import { LoginForm, LoginText } from './styled';
 import { useAppDispatch } from '../../hooks/redux';
 import { setUser } from '../../store/slices/user-slices';
+import { setAccessToken } from '../../utils/localStorage';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ const Login = () => {
             token: user.refreshToken,
           }),
         );
-        localStorage.setItem('accessToken', user.refreshToken);
+        setAccessToken(user.refreshToken)
         navigate('/');
       })
       .catch(() => alert('Invalid user'));

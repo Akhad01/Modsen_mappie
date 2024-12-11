@@ -13,7 +13,6 @@ import { setPosition } from '../../store/slices/map/map-slice';
 import { getCategories } from '../../store/selectors/sidebar-selector';
 import { useFilteredPlaces } from '../../hooks/use-filtered-places';
 
-import { fetchPlacesTest } from '../../api/api-test';
 import { getPlacesThunk } from '../../store/slices/map/getPlacesThunk';
 
 const MapBody = () => {
@@ -36,7 +35,6 @@ const MapBody = () => {
           dispatch(setPosition([latitude, longitude]));
 
           const timer = setTimeout(() => {
-            fetchPlacesTest()
             dispatch(getPlacesThunk())
           }, 1000)
 

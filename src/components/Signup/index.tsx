@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { setUser } from '../../store/slices/user-slices';
+import { setAccessToken } from '../../utils/localStorage';
 
 const Signup = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const Signup = () => {
             token: user.refreshToken,
           }),
         );
-        localStorage.setItem('accessToken', user.refreshToken);
+        setAccessToken(user.refreshToken);
         navigate('/');
       })
       .catch(() => alert('Invalid user'));
