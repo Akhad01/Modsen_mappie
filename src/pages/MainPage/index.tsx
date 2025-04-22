@@ -7,8 +7,11 @@ import Map from '../../components/Map';
 
 import { Container } from './styled';
 import { MapContext } from '../../context/MapContext';
-import { setMapSettings } from '../../store/slices/map/map-slice';
+import { setMapSettings } from '../../store/slices/map';
 import { useDispatch } from 'react-redux';
+import { getAccessToken } from '../../utils/localStorage';
+// import { setUser } from '../../store/slices/user-slices';
+import { AuthService } from '../../api/AuthService';
 
 const MainPage = () => {
   const dispatch = useDispatch()
@@ -20,9 +23,22 @@ const MainPage = () => {
     const lat = +params.get('lat')! || 0
     const lon = +params.get('lon')! || 0
     const zoom = +params.get('zoom')! || 5
-    console.log(params.toString());
     
     dispatch(setMapSettings({ center: [lat, lon], zoom }))
+    if (getAccessToken()) {
+      AuthService.checkAuth(getAccessToken()!)
+        .then((user) => {
+          console.log("user", user);
+          
+          // dispatch(setUser({
+          //   user: {
+          //     id: user.id,
+          //     picture: user.picture,
+          //     access: getAccessToken()!
+          //   }
+          // }))
+      })
+    }
   }, [])
 
   return (

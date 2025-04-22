@@ -9,7 +9,12 @@ interface Props {
 }
 
 const Places = memo(function Places({ filteredPlaces }: Props) {
+  if (!filteredPlaces || filteredPlaces.length === 0) {
+    return null; 
+  }
+  
   return filteredPlaces.map((place, index) => {
+    
     return (
       <Place
         id={place.id}

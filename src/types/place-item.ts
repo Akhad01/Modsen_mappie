@@ -16,7 +16,19 @@ export interface IPlaceWithoutDescription {
   type: PlaceKind
 }
 
-export interface ISpecificPlace {
-  place: PlaceItem,
+export interface FavoritePlace {
+  id: number;
+  position: [number, number],
+  tags: { [key: string]: string },
+  type: PlaceKind
+}
+
+export interface ToggleFavoritePlaceResponse {
+  added: boolean,
+  deleted: boolean,
+}
+
+export interface SpecificPlace {
+  place: FavoritePlace,
   saved: boolean
 }

@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 import styled from 'styled-components';
 
 export const CardContainer = styled(Card)`
@@ -27,6 +27,6 @@ export const CardDescription = styled(Typography)`
 
 export const CardActions = styled(Box)`
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   margin-top: 20px;
 `;

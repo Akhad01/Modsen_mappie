@@ -5,7 +5,7 @@ import MapBody from '../MapBody';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getMapSettings } from '../../store/selectors/map-selector';
-import { setMapSettings } from '../../store/slices/map/map-slice';
+import { setMapSettings } from '../../store/slices/map';
 import { MapContext } from '../../context/MapContext';
 import { useSearchParams } from 'react-router-dom';
 

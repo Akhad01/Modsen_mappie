@@ -1,19 +1,21 @@
-import { FavoriteItem } from './../../../types/favorite-item';
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteFavoriteByName } from './deleteFavoriteByNameThunk';
-import { fetchFavorites } from './fetchFavoritesThunk';
-import { addToFavorites } from './addToFavoritesThunk';
+
+import { fetchFavoritesThunk } from './fetchFavoritesThunk';
+import { addToFavoritesThunk } from './addToFavoritesThunk';
+import { FavoritePlace } from '../../../types/place-item';
 
 interface FavoritesState {
-    items: FavoriteItem[];
+    favorites: FavoritePlace[];
     loading: boolean;
     error: string | null;
+    resultTogglePlace: 'added' | 'delete' | ''
 }
 
 const initialState: FavoritesState = {
-    items: [],
+    favorites: [],
     loading: false,
-    error: null
+    error: null,
+    resultTogglePlace: ''
 }
 
 const favoritesSlice = createSlice({
@@ -22,41 +24,28 @@ const favoritesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchFavorites.pending, (state) => {
+            .addCase(addToFavoritesThunk.pending, (state) => {
                 state.loading = true
                 state.error = null
             })
-            .addCase(fetchFavorites.fulfilled, (state, action) => {
+            .addCase(addToFavoritesThunk.fulfilled, (state, action) => {
                 state.loading = false
-                state.items = action.payload
+                state.resultTogglePlace = action.payload.added ? 'added' : 'delete'
             })
-            .addCase(fetchFavorites.rejected, (state, action) => {
+            .addCase(addToFavoritesThunk.rejected, (state, action) => {
                 state.loading = false
                 state.error = action.payload as string
             })
         builder
-            .addCase(addToFavorites.pending, (state) => {
+            .addCase(fetchFavoritesThunk.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(addToFavorites.fulfilled, (state, action) => {
+            .addCase(fetchFavoritesThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                state.items = action.payload as string
+                state.favorites = action.payload 
             })
-            .addCase(addToFavorites.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
-            });
-        builder
-            .addCase(deleteFavoriteByName.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(deleteFavoriteByName.fulfilled, (state, action) => {
-                state.loading = false;
-                state.items = state.items.filter(item => !action.payload.includes(item.id));
-            })
-            .addCase(deleteFavoriteByName.rejected, (state, action) => {
+            .addCase(fetchFavoritesThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
             });

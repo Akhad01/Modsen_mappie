@@ -4,30 +4,29 @@ import Form from '../Form';
 import { SignupForm, SignupText } from './styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { setUser } from '../../store/slices/user-slices';
 import { setAccessToken } from '../../utils/localStorage';
+import { AuthService } from '../../api/AuthService';
 
 const Signup = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleRegister = (email: string, password: string) => {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.refreshToken,
-          }),
-        );
-        setAccessToken(user.refreshToken);
+  const handleRegister = async (email: string, password: string) => {
+    try {
+      const { accessToken } = await AuthService.signup(email, password)
+
+      if (accessToken) {
+        dispatch(setUser({ email, token: accessToken }));
+        setAccessToken(accessToken);
         navigate('/');
-      })
-      .catch(() => alert('Invalid user'));
-  };
+      } else {
+        alert('Registration successful but no token returned.');
+      }
+      } catch (error) {
+        alert("Error during registration")
+      }
+  }
 
   return (
     <SignupForm>

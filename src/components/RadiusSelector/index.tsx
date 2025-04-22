@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useRef } from 'react';
 import { TextField } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getMapRadius } from '../../store/selectors/map-selector';
-import { setRadius } from '../../store/slices/map/map-slice';
+import { setRadius } from '../../store/slices/map';
 
 const RadiusSelector = () => {
   const inputRef = useRef<HTMLInputElement>();

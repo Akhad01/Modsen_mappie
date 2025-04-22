@@ -2,8 +2,7 @@ import {axiosInstance} from './AxiosInstance';
 import { urls } from '../constants/urls';
 import axios from 'axios';
 
-import type { ISpecificPlace } from '../types/place-item';
-import type { IPlaceWithoutDescription } from '../types/place-item';
+import type { IPlaceWithoutDescription, SpecificPlace } from '../types/place-item';
 import { PlaceKind } from '../types/place-item';
 
 
@@ -21,7 +20,7 @@ export class PlacesService {
     }
 
     public static async getPlaceById(id: number) {
-        const {data} = await axiosInstance.get<ISpecificPlace>(urls.getUrlGetPlaceById(id));
+        const {data} = await axiosInstance.get<SpecificPlace>(urls.getUrlGetPlaceById(id));
         return data;
     }
 }

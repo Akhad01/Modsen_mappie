@@ -1,34 +1,33 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import Form from '../Form';
 import { LoginForm, LoginText } from './styled';
 import { useAppDispatch } from '../../hooks/redux';
 import { setUser } from '../../store/slices/user-slices';
 import { setAccessToken } from '../../utils/localStorage';
+import { AuthService } from '../../api/AuthService';
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (email: string, password: string) => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.refreshToken,
-          }),
-        );
-        setAccessToken(user.refreshToken)
-        navigate('/');
-      })
-      .catch(() => alert('Invalid user'));
-  };
+  const handleLogin = async (email: string, password: string) => {
+      try {
+        const { accessToken } = await AuthService.login(email, password)
+
+        if (accessToken) {
+          dispatch(setUser({ email, token: accessToken }));
+          setAccessToken(accessToken);
+          navigate('/');
+        } else {
+          alert('Login successful but no token returned.');
+        }
+      } catch (error) {
+        alert("Error during login")
+      }
+  }
 
   return (
     <LoginForm>

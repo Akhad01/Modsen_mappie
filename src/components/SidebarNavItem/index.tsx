@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { setSelectedNav } from '../../store/slices/sidebar-slice';
+import { setSelectedNav } from '../../store/slices/sidebar';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getActiveSidebar } from '../../store/selectors/sidebar-selector';
 import { ReactNode } from 'react';

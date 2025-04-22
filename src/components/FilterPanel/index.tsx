@@ -3,7 +3,7 @@ import { Avatar, ListItemAvatar, ListItemText } from '@mui/material';
 
 import { ListItemWrapper, StyledList, StyledListContainer } from './styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { toggleItemCategories } from '../../store/slices/sidebar-slice';
+import { toggleItemCategories } from '../../store/slices/sidebar';
 import { getCategories } from '../../store/selectors/sidebar-selector';
 import { Category } from '../../types/category';
 

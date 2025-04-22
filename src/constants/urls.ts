@@ -6,11 +6,12 @@ export const urls = {
     getUrlGetPlaces: (lat: number, lon: number, radius: number, categories: PlaceKind[]) => `${BASE_URL}/places?latitude=${lat}&longitude=${lon}&radius=${radius}&categories=${categories.join(',')}`,
     getUrlGetPlaceById: (id: number) => `${BASE_URL}/place/${id}`,
 
-    login: `${BASE_URL}/login`,
-    checkAuth: `${BASE_URL}/check-auth`,
+    login: `${BASE_URL}/auth/login`,
+    signup: `${BASE_URL}/auth/signup`,
+    checkAuth: `${BASE_URL}/auth/check-auth`,
     refresh: `${BASE_URL}/refresh`,
     logout: `${BASE_URL}/logout`,
 
-    getFavoritePlaces: `${BASE_URL}/favorite-places`,
-    toggleFavoritePlace: `${BASE_URL}/toggle-favorite-place`,
+    getFavoritePlaces: `${BASE_URL}/favorites/favorite-places`,
+    toggleFavoritePlace: `${BASE_URL}/favorites/toggle-favorite-place`,
 };

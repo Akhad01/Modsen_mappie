@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Placemark } from '@pbe/react-yandex-maps';
 import { shallowEqual } from 'react-redux';
 import { useAppDispatch } from '../../hooks/redux';
-import { setPlaceIdAndShowSidebarPanel } from '../../store/slices/sidebar-slice';
+import { setPlaceIdAndShowSidebarPanel } from '../../store/slices/sidebar';
 
 interface Props {
   id: number;
@@ -17,7 +17,6 @@ const Place = memo(
 
     const handleClick = () => {
       dispatch(setPlaceIdAndShowSidebarPanel(id));
-      console.log('click', id);
     };
 
     return (
@@ -37,5 +36,7 @@ const Place = memo(
     return shallowEqual(prevGeometry, nextGeometry);
   },
 );
+
+Place.displayName = 'Place'
 
 export default Place;

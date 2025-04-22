@@ -8,7 +8,7 @@ import PersonRadius from '../PersonRadius';
 import Places from '../Places';
 
 import { getMapRadius } from '../../store/selectors/map-selector';
-import { setPosition } from '../../store/slices/map/map-slice';
+import { setPosition } from '../../store/slices/map';
 
 import { getCategories } from '../../store/selectors/sidebar-selector';
 import { useFilteredPlaces } from '../../hooks/use-filtered-places';
