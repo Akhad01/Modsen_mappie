@@ -14,9 +14,6 @@ const RouteButton = () => {
 
   const location = useAppSelector(getLocation);
 
-  const lat = 53.854087035329904
-  const lon = 27.471980358099405
-
   const ymaps = useYMaps(['multiRouter.MultiRoute'])
   const { mapRef, routeRef } = useContext(MapContext)
 
@@ -30,22 +27,32 @@ const RouteButton = () => {
   }, [routeRef, currentPlace])
 
   const handleRoute = useCallback(() => {
-    if (!routeRef || !mapRef || !ymaps || !mapRef.current || !routeRef) {
+    if (!routeRef || !mapRef || !ymaps || !mapRef.current || !location || !currentPlace) {
       return
     }
-
-    if (routeRef.current && currentPlace) {
+  
+    const [lat, lon] = location
+    const [clat, clon] = currentPlace.position
+  
+    if (
+      typeof lat !== 'number' || typeof lon !== 'number' ||
+      typeof clat !== 'number' || typeof clon !== 'number'
+    ) {
+      return
+    }
+  
+    if (routeRef.current) {
       mapRef.current.geoObjects.remove(routeRef.current)
       const destination = routeRef.current?.model.getReferencePoints()[1]
       routeRef.current = undefined
       if (shallowEqual(destination, currentPlace.position)) return setCurrent(false)
     }
-
+  
     routeRef.current = new ymaps.multiRouter.MultiRoute(
       {
         referencePoints: [
-          location, 
-          currentPlace.position
+          [lat, lon],
+          [clat, clon]
         ],
         params: {
           routingMode: "pedestrian",
@@ -56,11 +63,10 @@ const RouteButton = () => {
         wayPointVisible: false
       }
     )
-    
+  
     setCurrent(true)
-
     mapRef.current.geoObjects.add(routeRef.current)
-  }, [ymaps, lat, lon, routeRef, currentPlace, mapRef]) 
+  }, [ymaps, location, currentPlace, mapRef, routeRef])
 
   return (
     <Button onClick={handleRoute} variant="contained" startIcon={<FaLocationDot />}>

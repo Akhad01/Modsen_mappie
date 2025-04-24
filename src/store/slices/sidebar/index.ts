@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { categories } from '../../../constants/categories';
 import { Category } from '../../../types/category';
-import { FavoriteItem } from '../../../types/favorite-item';
 import { FavoritePlace } from '../../../types/place-item';
 import { getInfoAboutPlaceThunk } from './getInfoAboutPlaceThunk';
 
@@ -9,7 +8,6 @@ interface SidebarState {
   selectedNav: string | null;
   categories: Category[];
   currentPlaceId: number;
-  favoritePlaces: FavoriteItem[];
   currentPlace: FavoritePlace & { saved?: boolean } | null;
   loading: boolean;
   error: string | null;
@@ -19,7 +17,6 @@ const initialState: SidebarState = {
   selectedNav: null,
   categories: categories,
   currentPlaceId: 0,
-  favoritePlaces: [],
   currentPlace: null,
   loading: false,
   error: null
@@ -39,9 +36,6 @@ export const sidebarSlice = createSlice({
         }
         return item;
       });
-    },
-    setFavoriteItem: (state, action) => {
-      state.favoritePlaces = action.payload
     },
     setPlaceIdAndShowSidebarPanel: (state, action) => {
       state.selectedNav = 'detail';
@@ -75,7 +69,6 @@ export const {
   setSelectedNav,
   toggleItemCategories,
   setPlaceIdAndShowSidebarPanel,
-  setFavoriteItem,
 } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;
