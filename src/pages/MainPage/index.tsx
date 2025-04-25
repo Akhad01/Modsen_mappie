@@ -10,8 +10,8 @@ import { MapContext } from '../../context/MapContext';
 import { setMapSettings } from '../../store/slices/map';
 import { useDispatch } from 'react-redux';
 import { getAccessToken } from '../../utils/localStorage';
-// import { setUser } from '../../store/slices/user-slices';
 import { AuthService } from '../../api/AuthService';
+import { setUser } from '../../store/slices/user-slices';
 
 const MainPage = () => {
   const dispatch = useDispatch()
@@ -28,15 +28,10 @@ const MainPage = () => {
     if (getAccessToken()) {
       AuthService.checkAuth(getAccessToken()!)
         .then((user) => {
-          console.log("user", user);
-          
-          // dispatch(setUser({
-          //   user: {
-          //     id: user.id,
-          //     picture: user.picture,
-          //     access: getAccessToken()!
-          //   }
-          // }))
+          dispatch(setUser({
+            id: user.id,
+            token: getAccessToken(),
+          }))
       })
     }
   }, [])

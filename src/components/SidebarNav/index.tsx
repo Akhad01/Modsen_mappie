@@ -11,6 +11,7 @@ import { removeUser } from '../../store/slices/user-slices';
 import { Logoimg, Wrapper } from './styled';
 import { useAuth } from '../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
+import { removeAccessToken } from '../../utils/localStorage';
 
 const SidebarNav = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const SidebarNav = () => {
 
   const handleLogout = () => {
     dispatch(removeUser());
+    removeAccessToken()
     navigate('/login');
   };
 
@@ -69,7 +71,7 @@ const SidebarNav = () => {
               <ListItemIcon>
                 <Logout />
               </ListItemIcon>
-              Logout
+              Login
             </MenuItem>
             <MenuItem onClick={handeleLogin}>
               <ListItemIcon>

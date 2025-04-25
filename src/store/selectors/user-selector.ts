@@ -1,3 +1,3 @@
 import { RootState } from "..";
 
-export const getUser = (state: RootState) => state.user.email
+export const getUser = (state: RootState) => state.user.token

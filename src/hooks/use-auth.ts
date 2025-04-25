@@ -3,7 +3,7 @@ import { useAppSelector } from './redux';
 import { getAccessToken } from '../utils/localStorage';
 
 export function useAuth() {
-  const [accessKey, setAccessKey] = useState('accessToken');
+  const [accessKey, setAccessKey] = useState('');
   const { email, token, id } = useAppSelector((state) => state.user);
 
   useEffect(() => {

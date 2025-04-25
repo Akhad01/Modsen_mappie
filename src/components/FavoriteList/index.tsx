@@ -10,26 +10,20 @@ import { getUser } from '../../store/selectors/user-selector';
 const FavoriteList = () => {
   const favorites = useAppSelector(getFavorites)
   const user = useAppSelector(getUser)
-  // const [loading, setLoading] = useState(true)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchFavoritesThunk())
   }, [])
 
-  // if (loading) {
-  //   return <div>Загрузка...</div>
-  // }
-
-  console.log('user', !user);
-  
-
   if (!user) {
-    <Paper>
-        <Alert severity="info">
-            Для использования закладок необходимо авторизоваться
-        </Alert>
-    </Paper>
+    return (
+      <Paper>
+          <Alert severity="info">
+              Для использования закладок необходимо авторизоваться
+          </Alert>
+      </Paper>
+    )
   }
 
   return (
