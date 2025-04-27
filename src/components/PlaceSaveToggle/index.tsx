@@ -7,6 +7,7 @@ import { addToFavoritesThunk } from '../../store/slices/favorites/addToFavorites
 import { getCurrentPlaceId, getCurrentPlaceSaved } from '../../store/selectors/sidebar-selector'
 import { useSelector } from 'react-redux';
 import { getCurrentPlaceStatus } from '../../store/selectors/favorites-selector';
+import { getUser } from '../../store/selectors/user-selector';
 
 const PlaceSaveToggle = () => {
   const dispatch = useAppDispatch()
@@ -14,20 +15,23 @@ const PlaceSaveToggle = () => {
   const currentPlaceId = useAppSelector(getCurrentPlaceId)
   const saved = useAppSelector(getCurrentPlaceSaved)
   const { loading } = useSelector(getCurrentPlaceStatus)
+  const user = useAppSelector(getUser)
 
   const handleAddToFavorites = useCallback(() => {
     dispatch(addToFavoritesThunk(currentPlaceId))
   }, [addToFavoritesThunk, currentPlaceId])
 
-  const isSaved = saved ? 'Удалить' : 'Сохранить'
+  const buttonText = loading ? 'Загрузка...' : saved ? 'Удалить' : 'Сохранить'
+  const isDisabled = user === null || loading
 
   return (
     <ButtonAction
       onClick={handleAddToFavorites}
       variant="outlined"
+      disabled={isDisabled}
       startIcon={<FaBookmark color="#808080" />}
     >
-      { loading ? 'Загрузка...' : isSaved }
+      { buttonText }
     </ButtonAction>
   )
 }
