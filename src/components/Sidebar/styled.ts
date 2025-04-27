@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const SidebarContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+`
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

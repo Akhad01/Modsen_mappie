@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 export const StyledHeading = styled.h3`
   font-size: 20px;
-  margin: 35px 0 15px 0;
+  margin: 35px 0 25px 0;
 `;
 
 export const InputWrapper = styled.div`

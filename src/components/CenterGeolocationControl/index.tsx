@@ -12,7 +12,7 @@ const CenterGeolocationControl = React.memo(
     const hadleClick = () => {
       dispatch(setCenterPosition(location));
     };
-    return <GeolocationControl onClick={hadleClick} />;
+    return <GeolocationControl options={{ position: { top: '11px', right: '11px' } }} onClick={hadleClick} />;
   },
 );
 

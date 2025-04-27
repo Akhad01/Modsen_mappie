@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineLogout as Logout } from 'react-icons/ai';
-import { Avatar, Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { MdPersonAddAlt1 as PersonIcon } from 'react-icons/md';
 import { logo } from '../../assets/icons';
@@ -8,7 +8,7 @@ import { sidebarMenu } from '../../constants/sidebar-menu';
 import SidebarNavItem from '../SidebarNavItem';
 import { useAppDispatch } from '../../hooks/redux';
 import { removeUser } from '../../store/slices/user-slices';
-import { Logoimg, Wrapper } from './styled';
+import { Logoimg, UserAvatar, Wrapper } from './styled';
 import { useAuth } from '../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
 import { removeAccessToken } from '../../utils/localStorage';
@@ -49,9 +49,9 @@ const SidebarNav = () => {
         </SidebarNavItem>
       ))}
 
-      <Avatar style={{ marginTop: 'auto' }} onClick={handleClick}>
+      <UserAvatar onClick={handleClick}>
         A
-      </Avatar>
+      </UserAvatar>
       <Menu
         onClick={handleClose}
         onClose={handleClose}
