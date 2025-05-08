@@ -41,9 +41,6 @@ export const sidebarSlice = createSlice({
       state.selectedNav = 'detail';
       state.currentPlaceId = action.payload;
     },
-    // setCurrentPlace: (state, action) => {
-    //   state.currentPlace = action.payload
-    // }
   },
   extraReducers: (builders) => {
     builders

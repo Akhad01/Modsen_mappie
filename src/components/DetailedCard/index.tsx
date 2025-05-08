@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Avatar, CardActions, Typography } from '@mui/material';
+import { Alert, Avatar, Box, CardActions, Paper, Skeleton, Stack, Typography } from '@mui/material';
 
 import {
   CardContainer,
@@ -17,12 +17,43 @@ import PlaceSaveToggle from '../PlaceSaveToggle';
 const DetailedCard = () => {
   const dispatch = useAppDispatch()
 
-  const currentPlace = useAppSelector(getCurrentPlace)
+  const { currentPlace, error, loading } = useAppSelector(getCurrentPlace)
   const currentPlaceId = useAppSelector(getCurrentPlaceId)
 
   useEffect(() => {
     dispatch(getInfoAboutPlaceThunk())
   }, [getInfoAboutPlaceThunk, currentPlaceId])
+
+  if (loading) {
+    return (
+      <Paper sx={{
+        padding: 2,
+        border: '1px solid #ccc',
+        borderRadius: 2,
+        width: 300
+      }}>
+        <Stack spacing={2}>
+          <Skeleton variant='circular' height={30} width={30} />
+          <Skeleton variant='text' width='60%' height={30} />
+          <Skeleton variant='text' width='80%' height={20} />
+          <Box display='flex' justifyContent='center' gap={2} >
+            <Skeleton variant='rectangular' width={90} height={36} />
+            <Skeleton variant='rectangular' width={90} height={36} />
+          </Box>
+        </Stack>
+      </Paper>
+    )
+  } 
+
+  if (error) {
+    return (
+      <Paper>
+        <Alert severity="error">
+            { error }
+        </Alert>
+      </Paper>
+    )
+  }
 
   return (
     currentPlace && (
