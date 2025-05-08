@@ -10,7 +10,7 @@ import { getLocation } from '../../store/selectors/map-selector'
 import { getCurrentPlace } from '../../store/selectors/sidebar-selector'
 
 const RouteButton = () => {
-  const currentPlace = useAppSelector(getCurrentPlace) 
+  const { currentPlace } = useAppSelector(getCurrentPlace) 
 
   const location = useAppSelector(getLocation);
 
