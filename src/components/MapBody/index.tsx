@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import React, { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks/redux';
 import { ZoomControl } from '@pbe/react-yandex-maps';
 
 import CenterGeolocationControl from '../CenterGeolocationControl';
@@ -7,23 +7,12 @@ import LocationMarker from '../LocationMarker';
 import PersonRadius from '../PersonRadius';
 import Places from '../Places';
 
-import { getMapRadius } from '../../store/selectors/map-selector';
-import { setPosition } from '../../store/slices/map';
-
-import { getCategories } from '../../store/selectors/sidebar-selector';
-import { useFilteredPlaces } from '../../hooks/use-filtered-places';
+import { setPosition, setUserLocation } from '../../store/slices/map';
 
 import { getPlacesThunk } from '../../store/slices/map/getPlacesThunk';
 
 const MapBody = () => {
   const dispatch = useAppDispatch();
-  const radius = useAppSelector(getMapRadius);
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(
-    null,
-  );
-  const categories = useAppSelector(getCategories);
-
-  const filteredPlaces = useFilteredPlaces();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -31,7 +20,7 @@ const MapBody = () => {
         (position) => {
           const { latitude, longitude } = position.coords;
           
-          setUserLocation([latitude, longitude]);
+          dispatch(setUserLocation([latitude, longitude]));
           dispatch(setPosition([latitude, longitude]));
 
           const timer = setTimeout(() => {
@@ -47,7 +36,7 @@ const MapBody = () => {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, [categories, radius]);
+  }, []);
 
   return (
     <>
@@ -58,9 +47,9 @@ const MapBody = () => {
         }}
       />
       <CenterGeolocationControl />
-      <Places filteredPlaces={filteredPlaces} />
-      <LocationMarker userLocation={userLocation} />
-      <PersonRadius userLocation={userLocation} />
+      <Places />
+      <LocationMarker />
+      <PersonRadius />
     </>
   );
 };

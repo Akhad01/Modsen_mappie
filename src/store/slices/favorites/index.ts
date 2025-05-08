@@ -10,7 +10,7 @@ interface FavoritesState {
     error: string | null;
     resultTogglePlace: 'added' | 'delete' | '';
     loadingToggleFavoritePlace: boolean;
-    errorToggleFavoritePlace: null | any;
+    errorToggleFavoritePlace: string | null ;
 }
 
 const initialState: FavoritesState = {

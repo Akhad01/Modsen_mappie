@@ -2,14 +2,13 @@ import React from 'react';
 import { Circle } from '@pbe/react-yandex-maps';
 
 import { useAppSelector } from '../../hooks/redux';
-import { getMapRadius } from '../../store/selectors/map-selector';
+import { getMapRadius, getUserLocation } from '../../store/selectors/map-selector';
 
-interface Props {
-  userLocation: number[] | null;
-}
 
-const PersonRadius = ({ userLocation }: Props) => {
+const PersonRadius = () => {
+  const userLocation = useAppSelector(getUserLocation)
   const radius = useAppSelector(getMapRadius);
+
   if (!userLocation || !radius) return null;
   return (
     <Circle

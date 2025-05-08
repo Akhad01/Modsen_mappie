@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from './styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getCurrentPlace } from '../../store/selectors/sidebar-selector';
+import { getCurrentPlace, getCurrentPlaceId } from '../../store/selectors/sidebar-selector';
 import { categoriesIcon } from '../../constants/categories';
 import RouteButton from '../RouteButton';
 import { getInfoAboutPlaceThunk } from '../../store/slices/sidebar/getInfoAboutPlaceThunk';
@@ -18,10 +18,11 @@ const DetailedCard = () => {
   const dispatch = useAppDispatch()
 
   const currentPlace = useAppSelector(getCurrentPlace)
+  const currentPlaceId = useAppSelector(getCurrentPlaceId)
 
   useEffect(() => {
     dispatch(getInfoAboutPlaceThunk())
-  }, [currentPlace])
+  }, [getInfoAboutPlaceThunk, currentPlaceId])
 
   return (
     currentPlace && (

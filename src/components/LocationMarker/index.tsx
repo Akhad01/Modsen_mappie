@@ -2,12 +2,13 @@ import React, { memo } from 'react';
 import { Placemark } from '@pbe/react-yandex-maps';
 
 import { mark } from '../../assets/icons';
+import { useAppSelector } from '../../hooks/redux';
+import { getUserLocation } from '../../store/selectors/map-selector';
 
-interface Props {
-  userLocation: number[] | null;
-}
 
-const LocationMarker = memo(function LocationMarker({ userLocation }: Props) {
+const LocationMarker = memo(function LocationMarker() {
+  const userLocation = useAppSelector(getUserLocation)
+
   return (
     userLocation && (
       <Placemark

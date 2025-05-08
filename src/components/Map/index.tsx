@@ -1,19 +1,23 @@
 import React, { useContext, useEffect } from 'react';
 import { Map as MapY } from '@pbe/react-yandex-maps';
+import { useSearchParams } from 'react-router-dom';
 
 import MapBody from '../MapBody';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getMapSettings } from '../../store/selectors/map-selector';
+import { getMapRadius, getMapSettings } from '../../store/selectors/map-selector';
 import { setMapSettings } from '../../store/slices/map';
 import { MapContext } from '../../context/MapContext';
-import { useSearchParams } from 'react-router-dom';
+import { getPlacesThunk } from '../../store/slices/map/getPlacesThunk';
+import { getCategories } from '../../store/selectors/sidebar-selector';
 
 const Map = () => {
   const dispatch = useAppDispatch();
   const mapSettings = useAppSelector(getMapSettings);
   const [, setSearchParams] = useSearchParams()
   const { mapRef } = useContext(MapContext)
+  const radius = useAppSelector(getMapRadius);
+  const categories = useAppSelector(getCategories);
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchParams({
@@ -23,6 +27,14 @@ const Map = () => {
     }, { replace: true }), 700)
     return () => clearTimeout(timer)
   })
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(getPlacesThunk())
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [categories, radius])
 
   const handleBoundsChange = (event: ymaps.IEvent) => {
     const map = event.get('target');

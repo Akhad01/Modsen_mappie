@@ -7,6 +7,7 @@ export interface MapState {
   center: [number, number];
   zoom: number;
   positions: [number, number] | [null, null];
+  userLocation: [number, number] | null;
   places: PlaceItem[];
   loading: boolean;
   error: string | null;
@@ -17,7 +18,7 @@ const initialState: MapState = {
   center: [41, 69],
   zoom: 10,
   positions: [null, null],
-
+  userLocation: null,
   places: [],
   loading: false,
   error: null
@@ -40,9 +41,9 @@ export const mapSlice = createSlice({
     setCenterPosition: (state, action) => {
       state.center = action.payload;
     },
-    // setPlaces: (state, action) => {
-    //   state.places = action.payload;
-    // },
+    setUserLocation: (state, action) => {
+      state.userLocation = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -66,7 +67,7 @@ export const {
   setPosition,
   setMapSettings,
   setCenterPosition,
-  // setPlaces,
+  setUserLocation
 } = mapSlice.actions;
 
 export default mapSlice.reducer;

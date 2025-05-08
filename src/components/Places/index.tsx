@@ -1,14 +1,13 @@
 import React, { memo } from 'react';
 
-import { categoriesIcon } from '../../constants/categories';
 import Place from '../Place';
-import { PlaceItem } from '../../types/place-item';
+import { categoriesIcon } from '../../constants/categories';
+import { useFilteredPlaces } from '../../hooks/use-filtered-places';
 
-interface Props {
-  filteredPlaces: PlaceItem[];
-}
 
-const Places = memo(function Places({ filteredPlaces }: Props) {
+const Places = memo(function Places() {
+  const filteredPlaces = useFilteredPlaces();
+
   if (!filteredPlaces || filteredPlaces.length === 0) {
     return null; 
   }
