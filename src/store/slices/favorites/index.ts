@@ -11,6 +11,7 @@ interface FavoritesState {
     resultTogglePlace: 'added' | 'delete' | '';
     loadingToggleFavoritePlace: boolean;
     errorToggleFavoritePlace: string | null ;
+    isFavoriteToggledSuccess: boolean;
 }
 
 const initialState: FavoritesState = {
@@ -21,6 +22,7 @@ const initialState: FavoritesState = {
     resultTogglePlace: '',
     loadingToggleFavoritePlace: false,
     errorToggleFavoritePlace: null,
+    isFavoriteToggledSuccess: false
 }
 
 const favoritesSlice = createSlice({
@@ -32,14 +34,17 @@ const favoritesSlice = createSlice({
             .addCase(addToFavoritesThunk.pending, (state) => {
                 state.loadingToggleFavoritePlace = true
                 state.errorToggleFavoritePlace = null
+                state.isFavoriteToggledSuccess = false
             })
             .addCase(addToFavoritesThunk.fulfilled, (state, action) => {
                 state.loadingToggleFavoritePlace = false
                 state.resultTogglePlace = action.payload.added ? 'added' : 'delete'
+                state.isFavoriteToggledSuccess = true
             })
             .addCase(addToFavoritesThunk.rejected, (state, action) => {
                 state.loadingToggleFavoritePlace = false
                 state.errorToggleFavoritePlace = action.payload as string
+                state.isFavoriteToggledSuccess = false
             })
         builder
             .addCase(fetchFavoritesThunk.pending, (state) => {

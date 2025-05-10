@@ -13,16 +13,18 @@ import { categoriesIcon } from '../../constants/categories';
 import RouteButton from '../RouteButton';
 import { getInfoAboutPlaceThunk } from '../../store/slices/sidebar/getInfoAboutPlaceThunk';
 import PlaceSaveToggle from '../PlaceSaveToggle';
+import { getIsFavoriteToggledSuccess } from '../../store/selectors/favorites-selector';
 
 const DetailedCard = () => {
   const dispatch = useAppDispatch()
 
   const { currentPlace, error, loading } = useAppSelector(getCurrentPlace)
   const currentPlaceId = useAppSelector(getCurrentPlaceId)
+  const isSuccess = useAppSelector(getIsFavoriteToggledSuccess)
 
   useEffect(() => {
     dispatch(getInfoAboutPlaceThunk())
-  }, [getInfoAboutPlaceThunk, currentPlaceId])
+  }, [getInfoAboutPlaceThunk, currentPlaceId, isSuccess])
 
   if (loading) {
     return (

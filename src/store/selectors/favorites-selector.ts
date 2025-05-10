@@ -6,3 +6,5 @@ export const getCurrentPlaceStatus = (state: RootState) => ({
   error: state.favorites.errorToggleFavoritePlace,
   loading: state.favorites.loadingToggleFavoritePlace,
 });
+
+export const getIsFavoriteToggledSuccess = (state: RootState) => state.favorites.isFavoriteToggledSuccess
