@@ -1,10 +1,11 @@
-import { IconButton, InputBase, Paper, List, ListItem, ListItemButton } from '@mui/material';
+import { IconButton, List, ListItem, ListItemButton } from '@mui/material';
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { MapContext } from '../../context/MapContext';
 import { useAppDispatch } from '../../hooks/redux';
 import { setPosition, setUserLocation } from '../../store/slices/map';
 import { getPlacesThunk } from '../../store/slices/map/getPlacesThunk';
+import { SearchContainer, SearchInput, SearchPaper, SuggestionsPaper } from './styled';
 
 interface AddressSuggestion {
   displayName?: string;
@@ -79,40 +80,21 @@ const SearchPanel = () => {
 
 
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
-      <Paper
-        sx={{
-          p: '2px 4px',
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          height: '60px',
-        }}
-      >
+    <SearchContainer>
+      <SearchPaper>
         <IconButton onClick={handleSearchClick}>
           <IoSearch />
         </IconButton>
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
+        <SearchInput
           placeholder="Место, адрес..."
           inputProps={{ 'aria-label': 'поиск по адресу' }}
           value={address}
           onChange={handleChange}
         />
-      </Paper>
+      </SearchPaper>
 
       {suggestions.length > 0 && (
-        <Paper
-          sx={{
-            position: 'absolute',
-            top: '62px',
-            left: 0,
-            right: 0,
-            zIndex: 10,
-            maxHeight: '200px',
-            overflowY: 'auto',
-          }}
-        >
+        <SuggestionsPaper>
           <List>
             {suggestions.map((suggestion, index) => (
               <ListItem key={index} disablePadding>
@@ -122,9 +104,9 @@ const SearchPanel = () => {
               </ListItem>
             ))}
           </List>
-        </Paper>
+        </SuggestionsPaper>
       )}
-    </div>
+    </SearchContainer>
   );
 };
 

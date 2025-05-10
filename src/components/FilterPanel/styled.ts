@@ -1,4 +1,4 @@
-import { List, ListItem } from '@mui/material';
+import { Avatar, List, ListItem, ListItemText } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledListContainer = styled(List)`
@@ -26,6 +26,10 @@ export const StyledListContainer = styled(List)`
   &::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
+
+  @media (max-width: 500px) {
+    height: 400px;
+  }
 `;
 
 export const StyledList = styled(List)`
@@ -39,3 +43,17 @@ export const ListItemWrapper = styled(ListItem)`
     opacity: 0.4;
   }
 `;
+
+export const StyledAvatar = styled(Avatar)`
+  @media (max-width: 700px) {
+    width: 35px;
+    height: 35px;
+  }
+`
+
+export const StyledListItemText = styled(ListItemText)`
+  @media (max-width: 700px) {
+    & .MuiListItemText-primary {
+      font-size: 14px;
+    }
+`

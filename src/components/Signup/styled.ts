@@ -10,6 +10,10 @@ export const SignupForm = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 100vw;
+  }
 `;
 
 export const SignupText = styled.p`

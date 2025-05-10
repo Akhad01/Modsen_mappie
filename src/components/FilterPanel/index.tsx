@@ -1,7 +1,7 @@
 import React from 'react';
-import { Avatar, ListItemAvatar, ListItemText } from '@mui/material';
+import { Avatar, ListItemAvatar } from '@mui/material';
 
-import { ListItemWrapper, StyledList, StyledListContainer } from './styled';
+import { ListItemWrapper, StyledList, StyledListContainer, StyledListItemText } from './styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { toggleItemCategories } from '../../store/slices/sidebar';
 import { getCategories } from '../../store/selectors/sidebar-selector';
@@ -25,9 +25,9 @@ const FilterPanel = () => {
             className={!category.isActive ? 'active' : ''}
           >
             <ListItemAvatar>
-              <Avatar src={category.icon} />
+              <Avatar sx={{ width: '35px', height: '35px' }} src={category.icon} />
             </ListItemAvatar>
-            <ListItemText primary={category.text} />
+            <StyledListItemText sx={{ fontSize: '14px' }} primary={category.text} />
           </ListItemWrapper>
         ))}
       </StyledList>

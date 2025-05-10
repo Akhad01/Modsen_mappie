@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
-import { Alert, Avatar, Box, CardActions, Paper, Skeleton, Stack, Typography } from '@mui/material';
+import { Alert, Paper, Stack } from '@mui/material';
 
 import {
+  CardActionsContainer,
   CardContainer,
+  CardDescription,
   CardDetails,
   CardIcons,
   CardTitle,
+  LoadingActions,
+  LoadingAvatar,
+  LoadingButton,
+  LoadingContainer,
+  LoadingSubtitle,
+  LoadingTitle,
+  PlaceAvatar,
 } from './styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getCurrentPlace, getCurrentPlaceId } from '../../store/selectors/sidebar-selector';
@@ -28,22 +37,17 @@ const DetailedCard = () => {
 
   if (loading) {
     return (
-      <Paper sx={{
-        padding: 2,
-        border: '1px solid #ccc',
-        borderRadius: 2,
-        width: 300
-      }}>
+      <LoadingContainer>
         <Stack spacing={2}>
-          <Skeleton variant='circular' height={30} width={30} />
-          <Skeleton variant='text' width='60%' height={30} />
-          <Skeleton variant='text' width='80%' height={20} />
-          <Box display='flex' justifyContent='center' gap={2} >
-            <Skeleton variant='rectangular' width={90} height={36} />
-            <Skeleton variant='rectangular' width={90} height={36} />
-          </Box>
+          <LoadingAvatar />
+          <LoadingTitle />
+          <LoadingSubtitle />
+          <LoadingActions >
+            <LoadingButton />
+            <LoadingButton />
+          </LoadingActions>
         </Stack>
-      </Paper>
+      </LoadingContainer>
     )
   } 
 
@@ -62,19 +66,18 @@ const DetailedCard = () => {
       <CardContainer>
         <CardDetails>
           <CardIcons>
-            <Avatar
-              sx={{ width: 30, height: 30 }}
+            <PlaceAvatar
               src={categoriesIcon[currentPlace.type]}
             />
           </CardIcons>
           <CardTitle variant="h5">{currentPlace.tags['name:ru'] ?? currentPlace.tags.name}</CardTitle>
-          <Typography style={{ marginTop: '10px' }} variant="body2">
+          <CardDescription>
             {currentPlace.tags.opening_hours || 'Нет информации'}
-          </Typography>
-          <CardActions style={{ marginTop: '10px', justifyContent: 'center' }}>
+          </CardDescription>
+          <CardActionsContainer>
             <PlaceSaveToggle />
             <RouteButton/>
-          </CardActions>
+          </CardActionsContainer>
         </CardDetails>
       </CardContainer>
     )

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Alert, Box, Paper, Skeleton, Stack, Typography } from '@mui/material';
+import { Alert, Box, Paper, Stack, Typography } from '@mui/material';
 import Card from '../Card';
-import { ListWrapper } from './styled';
+import { ListWrapper, SkeletonCircle, SkeletonItem, SkeletonTextLarge, SkeletonTextSmall } from './styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getFavorites } from '../../store/selectors/favorites-selector';
 import { fetchFavoritesThunk } from '../../store/slices/favorites/fetchFavoritesThunk';
@@ -23,24 +23,13 @@ const FavoriteList = () => {
         <Stack spacing={2}>
           {
             item.map((_, key) => (
-              <Paper
-                key={key}
-                elevation={2}
-                sx={{
-                  padding: '20px',
-                  borderRadius: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  width: '100%'
-                }}
-              >
+              <SkeletonItem key={key} >
                 <Box>
-                  <Skeleton sx={{ marginBottom: '20px' }} variant='text' width={140} height={25} />
-                  <Skeleton sx={{ marginBottom: '20px' }} variant='text' width={100} height={20} />
+                  <SkeletonTextLarge />
+                  <SkeletonTextSmall />
                 </Box>
-                <Skeleton sx={{ alignSelf: 'flex-end' }} variant='circular' width={24} height={24} />
-              </Paper>
+                <SkeletonCircle />
+              </SkeletonItem>
             ))
           }
         </Stack>

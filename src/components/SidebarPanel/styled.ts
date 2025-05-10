@@ -10,4 +10,8 @@ export const Container = styled.div`
   background-color: #ffffff;
   height: 100vh;
   left: 100%;
+
+  @media (max-width: 700px) {
+    width: min(300px, 100vw - 100% - 48px);
+  }
 `;

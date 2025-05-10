@@ -6,6 +6,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   padding: 30px 20px 35px;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    padding: 20px 15px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 20px 10px;
+  }
 `;
 
 export const Logoimg = styled.img`
